@@ -1,0 +1,31 @@
+body {
+	font-family: monospace;
+}
+
+.button {
+	width: 230px;
+	margin-right: 10px;
+	padding: 0px;
+	height: 120px;
+	background: red;
+	display: inline-block;
+}
+
+#text {
+	background: yellow;
+	width: 1200px;
+	height: 600px;
+
+}
+
+.newline {
+	background: green;
+	height: 40px;
+	width: 1200px;
+}
+
+.line {
+	background: blue;
+	height: 40px;
+	width: 1200px;
+}
