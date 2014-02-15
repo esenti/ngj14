@@ -4,63 +4,96 @@ function frame() {
 	delta = (now - then) / 1000;
 	then = now;
 
-	update(delta)
+	currentState.update(delta)
 }
 
-function update(delta) {
+GameState = {
 
-	toLetter -= delta;
+	enter: function() {
 
-	for(virus in viruses) {
-		if(viruses.hasOwnProperty(virus)) {
-			viruses[virus].cooldownLeft -= delta;
-			$('div[data-virus-id=' + virus + ']').find('.overlay').text(viruses[virus].cooldownLeft > 0 ? Math.ceil(viruses[virus].cooldownLeft) : '');
-			if(viruses[virus].cooldownLeft <= 0) {
-				$('div[data-virus-id=' + virus + ']').removeClass('cooling-down');
+		$('body').append('<div id="buttons"></div><div id="text"></div><div class="newline"></div>');
+
+		for(virus in viruses) {
+			if(viruses.hasOwnProperty(virus)) {
+				$('#buttons').append('<div class="button" data-virus-id="' + virus + '">' + viruses[virus].name + '<div class="overlay"></div></div>');
 			}
 		}
-	}
 
-	if(toLetter <= 0) {
-		toLetter = 0.1;
+		$('.button').click(function() {
 
-		var newline = $('.newline')
-		if(!waitingForSpace) {
-			newline.html(newline.html() + '<span class="letter">' + getNextLetter() + '</span>')
-			// newline.html(newline.html() + '<span class="letter">' + (Math.random() < 0.9 ? 'C' : '?') + '</span>')
+			var virus = viruses[$(this).data('virus-id')]
+
+			console.log(virus)
+
+			if(virus.cooldownLeft > 0) {
+				return;
+			}
+
+			virus.cooldownLeft = virus.cooldown;
+			$(this).addClass('cooling-down');
+
+			launchVirus(virus);
+		})
+	},
+
+	exit: function() {
+		$('body').html('');
+	},
+
+	update: function(delta) {
+
+		toLetter -= delta;
+
+		for(virus in viruses) {
+			if(viruses.hasOwnProperty(virus)) {
+				viruses[virus].cooldownLeft -= delta;
+				$('div[data-virus-id=' + virus + ']').find('.overlay').text(viruses[virus].cooldownLeft > 0 ? Math.ceil(viruses[virus].cooldownLeft) : '');
+				if(viruses[virus].cooldownLeft <= 0) {
+					$('div[data-virus-id=' + virus + ']').removeClass('cooling-down');
+				}
+			}
 		}
 
-		if((newline.children().length > 5 && Math.random() > 0.9) || waitingForSpace) {
-			var canAppend = true;
+		if(toLetter <= 0) {
+			toLetter = 0.1;
+
+			var newline = $('.newline')
+			if(!waitingForSpace) {
+				newline.html(newline.html() + '<span class="letter">' + getNextLetter() + '</span>')
+			}
+
+			if((newline.children().length > 5 && Math.random() > 0.9) || waitingForSpace) {
+				var canAppend = true;
+
+				$('.line').each(function() {
+
+					if($(this).position().top >= ($('#text').height() - 2 * $(this).height())) {
+						canAppend = false;
+						waitingForSpace = true;
+					}
+				});
+
+				if(canAppend) {
+					$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
+					newline.html('');
+					waitingForSpace = false;
+				}
+			}
 
 			$('.line').each(function() {
-
-				if($(this).position().top >= ($('#text').height() - 2 * $(this).height())) {
-					canAppend = false;
-					waitingForSpace = true;
+				if($(this).position().top <= 0) {
+					$(this).remove();
 				}
 			});
-
-			if(canAppend) {
-				$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
-				newline.html('');
-				waitingForSpace = false;
-			}
 		}
 
 		$('.line').each(function() {
-			if($(this).position().top <= 0) {
-				$(this).remove();
-			}
+			$(this).offset({top: $(this).offset().top - 10 * delta});
 		});
+
+
+		window.requestAnimationFrame(frame);
 	}
-
-	$('.line').each(function() {
-		$(this).offset({top: $(this).offset().top - 10 * delta});
-	});
-
-
-	window.requestAnimationFrame(frame);
 }
 
 $(function() {
@@ -102,32 +135,15 @@ $(function() {
 		removeAnimation: 'flipOutY'
 	};
 
-	for(virus in viruses) {
-		if(viruses.hasOwnProperty(virus)) {
-			$('#buttons').append('<div class="button" data-virus-id="' + virus + '">' + viruses[virus].name + '<div class="overlay"></div></div>');
-		}
-	}
-
-	$('.button').click(function() {
-
-		var virus = viruses[$(this).data('virus-id')]
-
-		console.log(virus)
-
-		if(virus.cooldownLeft > 0) {
-			return;
-		}
-
-		virus.cooldownLeft = virus.cooldown;
-		$(this).addClass('cooling-down');
-
-		launchVirus(virus);
-	})
 
 	now = then = Date.now();
 
 	toLetter = 0;
 	waitingForSpace = false;
+
+	currentState = GameState;
+
+	GameState.enter();
 
 	window.requestAnimationFrame(frame);
 });
@@ -188,5 +204,3 @@ function launchVirus(virus) {
 	});
 
 }
-
-
