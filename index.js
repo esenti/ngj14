@@ -94,7 +94,7 @@ Niestare były rączki, co je tak rzuciły.";
 var isInSnowmanState = false;
 
 var gameSpeed = 0.01;
-var gameTime = 10000;
+var gameTime = 30000;
 
 var startLife = 100;
 
@@ -164,6 +164,15 @@ viruses.e = {
 	nonLetter: true,
 	numbers: true,
 	cooldown: 1000000
+};
+
+viruses.fuck = {
+	name: generateVirusName(),
+	typeString: 'A-Z',
+	removeAnimation: 'flipOutY',
+	letter: true,
+	cooldown: 10,
+	probability: 30,
 };
 
 
