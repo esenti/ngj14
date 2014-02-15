@@ -1,7 +1,49 @@
 
 var levelText = [];
 
-levelText[0] = "Litwo! ☃Ojczyzno moja!☃ ty jesteś jak zdrowie.\n\
+levelText[0] = "Dear Eric,\n\
+we have to act. The agency went crazy,\n\
+everyone who sends an email with any of their\n\
+☃chosen☃ words might be soon ☃dead☃.\n\
+I sent you some software:\n\
+an algorithm marks ☃dangerous☃ words,\n\
+and two ☃viruses☃ that eat charcters from\n\
+agencies stream.\n\
+Try not to leak anything, but at least be sure\n\
+marked words wont pass.\n\
+\n\
+Best regards,\n\
+☃Merlin☃";
+
+levelText[1] = "Dear ☃Stephanie☃,\n\
+my heard is like ☃burst☃ wiht some ☃SEMTEX☃.\n\
+I cannot keeep this ☃conspiracy☃ any longer.\n\
+I LOVE YOU.\n\
+Evertything in you, your ☃face☃, your hair,\n\
+even your ☃sneakers☃ painted in flowers.\n\
+I can only hope, you feel the same.\n\
+If so, maybe i could take you for the newest\n\
+☃Pixar☃ movie☃\n\
+\n\
+Trully yours,\n\
+☃Bob☃";
+
+levelText[2] = "Eric,\n\
+I think I got into their trap.\n\
+I assume I will be soon found as ☃victim☃\n\
+of some ☃lethal incident☃. Or rather my\n\
+☃corpse☃ will never be found.\n\
+I also think their ☃firewall☃ will get some\n\
+☃response☃ for my ☃viruses☃ very soon, and \n\
+these will loose most of their effectivenes.\n\
+Your on your own.\n\
+Act ☃smart☃, fight this ☃threat☃ for\n\
+☃freedom☃, and do not get ☃killed☃.\n\
+\n\
+I hope we will meet again,\n\
+☃Merlin☃";
+
+levelText[3] = "Litwo! ☃Ojczyzno moja!☃ ty jesteś jak zdrowie.\n\
 1237\n\
 ???\n\
 Kto cię stracił. Dziś ☃piękność☃ twą w całej ozdobie\n\
@@ -263,7 +305,7 @@ function launchVirus(virus) {
 
 	if (virus.removeBack) {
 		if (virus.removeFront) {
-			for (var i = 0; i < virus.removeFront; ++i) {
+			for (var i = 0; i < Math.min(virus.removeFront, toRemoveFromBack.length); ++i) {
 				removeWithAnimation(toRemoveFromBack[i].$el, toRemoveFromBack[i].animation);
 			}
 		}
