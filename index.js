@@ -134,6 +134,25 @@ function frame() {
 	currentState.update(delta)
 }
 
+MenuState = {
+	enter: function() {
+		$('body').append('<div>This is menu!</div>');
+
+		$('div').click(function() {
+			setState(GameState);
+
+		})
+	},
+
+	exit: function() {
+		$('body').html('');
+	},
+
+	update: function() {
+		window.requestAnimationFrame(frame);
+	}
+}
+
 GameState = {
 
 	enter: function() {
@@ -225,16 +244,24 @@ GameState = {
 	}
 }
 
+function setState(state) {
+	if(typeof currentState !== 'undefined') {
+		currentState.exit();
+	}
+
+	state.enter();
+	currentState = state;
+}
+
 $(function() {
+
 
 	now = then = Date.now();
 
 	toLetter = 0;
 	waitingForSpace = false;
 
-	currentState = GameState;
-
-	GameState.enter();
+	setState(MenuState);
 
 	window.requestAnimationFrame(frame);
 });
