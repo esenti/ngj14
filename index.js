@@ -1,13 +1,16 @@
 
-var levelTextIt = 0;
-var levelText = "Litwo! Ojczyzno moja! ty jesteś jak zdrowie.\n\
+var levelText = [];
+
+levelText[0] = "Litwo! Ojczyzno moja! ty jesteś jak zdrowie.\n\
 Ile cię trzeba cenić, ten tylko się dowie,\n\
 1237           \n\
 ???             \n\
 Kto cię stracił. Dziś piękność twą w całej ozdobie\n\
 Widzę i opisuję, bo tęsknię po tobie.\n\
 \n\
-Panno Święta, co jasnej bronisz Częstochowy\n\
+"
+
+levelText[1] = "Panno Święta, co jasnej bronisz Częstochowy\n\
 I w Ostrej świecisz Bramie! Ty, co gród zamkowy\n\
 Nowogródzki ochraniasz z jego wiernym ludem!\n\
 Jak mnie dziecko do zdrowia powróciłaś cudem\n\
@@ -234,6 +237,7 @@ GameState = {
 
 		this.life = 10;
 		this.outOfLetters = false;
+		this.letterIterator = getLetterIterator(0);
 	},
 
 	exit: function() {
@@ -262,7 +266,7 @@ GameState = {
 			var newline = $('.newline')
 			var nextLetter = '';
 			if(!waitingForSpace) {
-				nextLetter = getNextLetter();
+				nextLetter = self.letterIterator();
 				if(nextLetter == undefined) {
 					this.outOfLetters = true;
 				}
@@ -305,7 +309,7 @@ GameState = {
 			setState(MenuState);
 		}
 
-		if($(this).find('.letter:not(.removed)').length == 0 && this.outOfLetters) {
+		if($('.line').find('.letter:not(.removed)').length == 0 && this.outOfLetters) {
 			setState(AlbumState);
 		}
 
@@ -335,10 +339,14 @@ $(function() {
 	window.requestAnimationFrame(frame);
 });
 
-function getNextLetter() {
-	//return String.fromCharCode(Math.random() * 90 + 32);
-	var letter = levelText[levelTextIt++];
-	return letter;
+function getLetterIterator(level) {
+
+	var i = 0
+
+	return function() {
+		var letter = levelText[level][i++];
+		return letter;
+	}
 }
 
 function launchVirus(virus) {
