@@ -1,3 +1,4 @@
+
 function frame() {
 	now = Date.now();
 	delta = (now - then) / 1000;
@@ -25,7 +26,7 @@ function update(delta) {
 
 		var newline = $('.newline')
 		if(!waitingForSpace) {
-			newline.html(newline.html() + '<span class="letter">' + String.fromCharCode(Math.random() * 90 + 32) + '</span>')
+			newline.html(newline.html() + '<span class="letter">' + getNextLetter() + '</span>')
 			// newline.html(newline.html() + '<span class="letter">' + (Math.random() < 0.9 ? 'C' : '?') + '</span>')
 		}
 
@@ -131,6 +132,10 @@ $(function() {
 	window.requestAnimationFrame(frame);
 });
 
+function getNextLetter() {
+	return String.fromCharCode(Math.random() * 90 + 32);
+}
+
 function forEveryLetter(callback) {
 	$('.line .letter').each(function(i, e) {
 		$el = $(this);
@@ -179,7 +184,7 @@ function launchVirus(virus) {
 			removeWithAnimation(virus.removeAnimation);
 			return;
 		}
-		
+
 	});
 
 }
