@@ -191,11 +191,12 @@ GameState = {
 
 	enter: function() {
 
-		$('body').append('<div id="buttons"></div><div id="text"></div><div class="newline"></div>');
+		$('body').append('<div id="buttons"></div><div id="life"></div><div id="text"></div><div class="newline"></div>');
 
 		for(virus in viruses) {
 			if(viruses.hasOwnProperty(virus)) {
 				$('#buttons').append('<div class="button" data-virus-id="' + virus + '">' + viruses[virus].name + '<div class="overlay"></div></div>');
+				viruses[virus].cooldownLeft = 0;
 			}
 		}
 
@@ -216,6 +217,7 @@ GameState = {
 		})
 
 		this.life = 10;
+		this.outOfLetters = false;
 	},
 
 	exit: function() {
@@ -245,12 +247,16 @@ GameState = {
 			var nextLetter = '';
 			if(!waitingForSpace) {
 				nextLetter = getNextLetter();
-				if (nextLetter != '\n') {
+				if(nextLetter == undefined) {
+					this.outOfLetters = true;
+				}
+
+				if (nextLetter != '\n' && nextLetter != undefined) {
 					newline.html(newline.html() + '<span class="letter alive">' + nextLetter + '</span>');
 				}
 			}
 
-			if((newline.children().length > 5 && nextLetter == '\n') || waitingForSpace) {
+			if((newline.children().length > 5 && nextLetter == '\n') || waitingForSpace || nextLetter == undefined) {
 				var canAppend = true;
 
 				$('.line').each(function() {
@@ -280,8 +286,14 @@ GameState = {
 			$(this).offset({top: $(this).offset().top - 10 * delta});
 		});
 
+		$('#life').text(this.life);
+
 		if(this.life <= 0) {
 			setState(MenuState);
+		}
+
+		if($(this).find('.letter:not(.removed)').length == 0 && this.outOfLetters) {
+			setState(AlbumState);
 		}
 
 		window.requestAnimationFrame(frame);
@@ -358,7 +370,7 @@ function launchVirus(virus) {
 		for (var i = Math.max(0, toRemoveFromBack.length - virus.removeBack); i < toRemoveFromBack.length; ++i) {
 			removeWithAnimation(toRemoveFromBack[i].$el, toRemoveFromBack[i].animation);
 		}
-	} 
+	}
 
 }
 
