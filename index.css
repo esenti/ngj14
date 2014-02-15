@@ -45,3 +45,7 @@ body {
 .removed {
 	color: #666666;
 }
+
+#text span {
+	display: inline-block;
+

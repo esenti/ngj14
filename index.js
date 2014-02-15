@@ -53,12 +53,21 @@ function update(delta) {
 }
 
 $(function() {
-	$('.button').click(function() {
-		$('.line .letter').each(function(i, e) {
-			if($(this).text() === 'C') {
-				$(this).addClass('removed');
-			}
-		});
+	$('.button').click(function(e) {
+
+		var $el = $(e.target);
+		
+		if ($el.hasClass("button1")) {
+			button1();
+		} else if ($el.hasClass("button2")) {
+			button2();
+		} else if ($el.hasClass("button3")) {
+			button3();
+		} else if ($el.hasClass("button4")) {
+			button4();
+		} else if ($el.hasClass("button5")) {
+			button5();
+		}
 
 		$('.line').each(function(i, e) {
 			var keep = false;
@@ -81,4 +90,30 @@ $(function() {
 	waitingForSpace = false;
 
 	window.requestAnimationFrame(frame);
-})
+});
+
+
+function button1() {
+	$('.line .letter').each(function(i, e) {
+		if($(this).text() === 'C') {
+			$(this).addClass('removed');
+		}
+	});
+}
+
+function button2() {
+	$('.line .letter').each(function(i, e) {
+		if($(this).text() !== 'C') {
+			$(this).addClass('removed');
+		}
+	});
+}
+
+function button3() {
+}
+
+function button4() {
+}
+
+function button5() {
+}
