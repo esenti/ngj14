@@ -1,11 +1,14 @@
 GameState = {
 
-	enter: function() {
+	enter: function(viruses) {
 
 		$('body').append('<div id="buttons"></div><div id="life"></div><div id="text"></div><div class="newline"></div>');
 
-		for(virus in viruses) {
-			if(viruses.hasOwnProperty(virus)) {
+		this.viruses = viruses;
+		var self = this;
+
+		for(virus in self.viruses) {
+			if(self.viruses.hasOwnProperty(virus)) {
 
 				var strType = viruses[virus].typeString;
 				var strProbability = viruses[virus].probability ? viruses[virus].probability + '%' : '';
@@ -25,13 +28,13 @@ GameState = {
 
 				$('#buttons').append(newButton);
 
-				viruses[virus].cooldownLeft = 0;
+				self.viruses[virus].cooldownLeft = 0;
 			}
 		}
 
 		$('.button').click(function() {
 
-			var virus = viruses[$(this).data('virus-id')]
+			var virus = self.viruses[$(this).data('virus-id')]
 
 			console.log(virus)
 
@@ -60,11 +63,11 @@ GameState = {
 
 		toLetter -= delta;
 
-		for(virus in viruses) {
-			if(viruses.hasOwnProperty(virus)) {
-				viruses[virus].cooldownLeft -= delta;
+		for(virus in self.viruses) {
+			if(self.viruses.hasOwnProperty(virus)) {
+				self.viruses[virus].cooldownLeft -= delta;
 
-				var strPercent = (!viruses[virus].cooldown) ? 100 : (100 - (viruses[virus].cooldownLeft / viruses[virus].cooldown) * 100);
+				var strPercent = (!self.viruses[virus].cooldown) ? 100 : (100 - (self.viruses[virus].cooldownLeft / self.viruses[virus].cooldown) * 100);
 				strPercent = Math.min(100, Math.max(0, strPercent));
 
 				$el = $("#buttons [data-virus-id='" + virus + "'] .cldwrapper");
