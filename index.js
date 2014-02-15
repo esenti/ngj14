@@ -25,7 +25,7 @@ function update(delta) {
 
 		var newline = $('.newline')
 		if(!waitingForSpace) {
-			newline.html(newline.html() + '<span class="letter">' + String.fromCharCode(Math.random() * 26 + 65) + '</span>')
+			newline.html(newline.html() + '<span class="letter">' + String.fromCharCode(Math.random() * 90 + 32) + '</span>')
 			// newline.html(newline.html() + '<span class="letter">' + (Math.random() < 0.9 ? 'C' : '?') + '</span>')
 		}
 
@@ -90,7 +90,7 @@ $(function() {
 
 	viruses.d = {
 		name: '0-9',
-		numbers: true,
+		number: true,
 		removeAnimation: 'rollOut'
 	};
 
@@ -169,15 +169,10 @@ function isLetter($el, text) {
 function launchVirus(virus) {
 	forEveryLetter( function($el, text) {
 
-		if (virus.letter) {
-			if (isLetter($el, text)) {
-				removeWithAnimation(virus.removeAnimation);
-				return;
-			}
-		}
-
-		if (virus.nonLetter) {
-			if (!isLetter($el, text)) {
+		if ((virus.letter && isLetter($el, text)) ||
+			(virus.nonLetter && !isLetter($el, text)) ||
+			(virus.number && isNumber($el, text)) ||
+			(virus.notNumber && !isNumber($el, text))) {}
 				removeWithAnimation(virus.removeAnimation);
 				return;
 			}
