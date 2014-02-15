@@ -147,7 +147,7 @@ function forEveryLetter(callback) {
 function removeWithAnimation(animation) {
 	$el.animateCSS(animation, 0, function(a) {
 		$(this).addClass("removed");
-		
+
 		$('.line').each(function(i, e) {
 			var keep = false;
 
