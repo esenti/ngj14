@@ -91,11 +91,14 @@ Na niem noty i książki; wszystko porzucano\n\
 Niedbale i bezładnie; nieporządek miły!\n\
 Niestare były rączki, co je tak rzuciły.";
 
+var gameSpeed = 0.01;
+
 var viruses = {}
 
 viruses.a = {
 	name: 'A-Z + 0-9',
 	removeAnimation: 'rotateOut',
+	removeFront: 10,
 	letter: true,
 	numbers: true,
 	cooldown: 5
@@ -104,28 +107,38 @@ viruses.a = {
 viruses.b = {
 	name: 'NOT A-Z',
 	removeAnimation: 'fadeOutDown',
+	removeBack: 5,
+	direction: "back",
 	nonLetter: true,
 	cooldown: 15
 };
 
 viruses.c = {
-	name: 'NOT A-Z + 0-9',
+	name: '<- 50% ->',
+	removeAnimation: 'flipOutY',
+	removeFront: 10,
+	removeBack: 10,
+	probability: 50,
+	letter: true,
 	nonLetter: true,
 	numbers: true,
-	removeAnimation: 'hinge',
-	cooldown: 33
+	cooldown: 0
 };
 
 viruses.d = {
 	name: '0-9',
 	number: true,
+	probability: 50,
 	removeAnimation: 'rollOut',
 	cooldown: 0.1
 };
 
 viruses.e = {
-	name: 'Nothing',
-	removeAnimation: 'flipOutY'
+	name: 'ONE TIME ALL',
+	removeAnimation: 'flipOutY',
+	letter: true,
+	nonLetter: true,
+	numbers: true
 };
 
 
@@ -185,14 +198,14 @@ GameState = {
 		}
 
 		if(toLetter <= 0) {
-			toLetter = 0.1;
+			toLetter = gameSpeed;
 
 			var newline = $('.newline')
 			var nextLetter = '';
 			if(!waitingForSpace) {
 				nextLetter = getNextLetter();
 				if (nextLetter != '\n') {
-					newline.html(newline.html() + '<span class="letter">' + nextLetter + '</span>');
+					newline.html(newline.html() + '<span class="letter alive">' + nextLetter + '</span>');
 				}
 			}
 
@@ -252,22 +265,52 @@ function getNextLetter() {
 
 function launchVirus(virus) {
 
+	var removedFromFront = 0;
+	var toRemoveFromBack = [];
+
 	forEveryLetter( function($el, text) {
+
+		if (virus.probability && Math.random() * 100 > virus.probability) {
+			return;
+		}
+
+		if (virus.removeFront && removedFromFront >= virus.removeFront) {
+			return;
+		}
 
 		if ((virus.letter && isLetter($el, text)) ||
 		    (virus.nonLetter && !isLetter($el, text)) ||
 			(virus.number && isNumber($el, text)) ||
 			(virus.notNumber && !isNumber($el, text))) {
-			removeWithAnimation($el, virus.removeAnimation);
+
+			if (virus.removeBack) {
+				toRemoveFromBack.push({$el: $el, animation: virus.removeAnimation});
+			} else {
+				removedFromFront++;
+				removeWithAnimation($el, virus.removeAnimation);
+			}
+
 			return;
 		}
 
 	});
 
+	if (virus.removeBack) {
+		if (virus.removeFront) {
+			for (var i = 0; i < virus.removeFront; ++i) {
+				removeWithAnimation(toRemoveFromBack[i].$el, toRemoveFromBack[i].animation);
+			}
+		}
+
+		for (var i = Math.max(0, toRemoveFromBack.length - virus.removeBack); i < toRemoveFromBack.length; ++i) {
+			removeWithAnimation(toRemoveFromBack[i].$el, toRemoveFromBack[i].animation);
+		}
+	} 
+
 }
 
 function forEveryLetter(callback) {
-	$('.line .letter').each(function(i, e) {
+	$('.line .alive').each(function(i, e) {
 		var $el = $(this);
 		var text = $el.text();
 		callback($el, text);
@@ -277,6 +320,7 @@ function forEveryLetter(callback) {
 function removeWithAnimation($el, animation) {
 	$el.animateCSS(animation, 0, function(a) {
 		$(this).addClass("removed");
+		$(this).removeClass("alive");
 
 		$('.line').each(function(i, e) {
 			var keep = false;
