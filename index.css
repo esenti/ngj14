@@ -13,7 +13,7 @@ body {
 	width: 1200px;
 	height: 300px;
 	position: relative;
-	border-top: 1px dashed green;
+	/*border-top: 1px dashed green;*/
 	margin-top: 20px;
 	border-radius: 10px 10px 0px 0px;
 }
@@ -23,7 +23,7 @@ body {
 	z-index: 11;
     border: 1px solid rgba(0,0,0,0.5);
 	width: 1200px;
-	height: 320px;   
+	height: 320px;
     border-radius: 10px 10px 10px 10px;
     background: rgba(0,0,0,0.25);
     box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
@@ -41,17 +41,20 @@ table {
 	float: left;
 	z-index: 0;
 	height: 20px;
-	width: 1200px;
+	width: 1180px;
 	border-top: 1px solid green;
-	border-radius: 0px 0px 10px 10px;	
+	border-radius: 0px 0px 10px 10px;
+	margin-top: -22px;
+	padding: 0px 10px;
 }
 
 .line {
 	/*background: blue;*/
 	height: 20px;
-	width: 1200px;
+	width: 1180px;
 	position: absolute;
 	white-space: pre-wrap;
+	padding: 0px 10px;
 }
 
 .removed {
