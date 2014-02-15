@@ -21,7 +21,56 @@ AlbumState = {
 		$('.button').click(function() {
 
 			var virus = viruses[$(this).data('virus-id')]
-			$('#details').html(JSON.stringify(virus) + '<a class="button orange glass back xl ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button orange glass shield xl start">start</a>');
+
+			var virusParams = "<ul>";
+
+			var kills = "";
+			if (virus.letter) {
+				if (virus.letter !== true) {
+					kills += virus.letter + "s";
+				} else {
+					kills += "letters";
+				}
+			}
+
+			if (virus.number) {
+				if (kills != "") {
+					kills += ", ";
+				}
+				kills += "numbers";
+			}
+
+			if (virus.nonLetter) {
+				if (kills != "") {
+					kills += ", ";
+				}
+				kills += "others";
+			}
+
+			virusParams += "<li><strong>" + virus.name + "</strong></li>";
+
+			virusParams += "<li><em>" + virus.typeString + "</em></li>";
+
+			if (virus.cooldown > 9999)
+				virusParams += "<li>Only once</li>";
+			else
+				virusParams += "<li>Cooldown:" + virus.cooldown + "s</li>";
+
+			if (virus.probability)
+				virusParams += "<li>Efficenty: " + virus.probability + "%</li>";
+
+			virusParams += "<li>Kills: " + kills + "</li>";
+
+			if (virus.removeFront)
+				virusParams += "<li>Remove first " + virus.removeFront + " characters</li>";
+
+			if (virus.removeBack)
+				virusParams += "<li>Remove last " + virus.removeBack + " characters</li>";
+
+			virusParams += "</ul>";
+
+
+			$('#details').html('<a class="button orange glass back xl ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button orange glass shield xl start">start</a>' + virusParams);
 
 			self.selectedVirus = virus;
 			self.selectedVirusId = $(this).data('virus-id');

@@ -419,12 +419,12 @@ function isLetter($el, text) {
 
 function isVowel($el, text) {
 	var l = text.toUpperCase();
-	return l == 'E' || l == 'Y' || l == 'U' || l == 'O' || l == 'A';
+	return l == 'E' || l == 'Y' || l == 'U' || l == 'O' || l == 'A' || l == 'I';
 }
 
 function makeButton(virus, id) {
 	var strType = virus.typeString;
-	var strProbability = virus.probability ? virus.probability + '%' : '';
+	var strProbability = virus.probability ? virus.probability + '%' : (virus.removeFront ? virus.removeFront + ' letters' : (virus.removeBack ? virus.removeBack + ' letters' : 'all'));
 	var strName = virus.name;
 	var strDirection = virus.removeFront ? (virus.removeBack ? "both" : "front") : (virus.removeBack ? "back" : "random");
 	var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
