@@ -46,7 +46,7 @@ body {
 }
 
 .removed {
-	color: #666666;
+	visibility: hidden;
 }
 
 .overlay {

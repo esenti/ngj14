@@ -12,8 +12,6 @@
 
             function run() {
 
-                console.log(callback);
-
                 $this.addClass( "animated " + effect);
 
                 $this.bind( transitionEnd, function () {

@@ -71,7 +71,7 @@ $(function() {
 		removeAnimation: 'rotateOut',
 		letter: true,
 		numbers: true,
-		cooldown: 5,
+		cooldown: 5
 	};
 
 	viruses.b = {
@@ -85,13 +85,15 @@ $(function() {
 		name: 'NOT A-Z + 0-9',
 		nonLetter: true,
 		numbers: true,
-		removeAnimation: 'hinge'
+		removeAnimation: 'hinge',
+		cooldown: 33
 	};
 
 	viruses.d = {
 		name: '0-9',
-		numbers: true,
-		removeAnimation: 'rollOut'
+		number: true,
+		removeAnimation: 'rollOut',
+		cooldown: 0.1
 	};
 
 	viruses.e = {
@@ -167,23 +169,19 @@ function isLetter($el, text) {
 
 
 function launchVirus(virus) {
+
 	forEveryLetter( function($el, text) {
 
-		if (virus.letter) {
-			if (isLetter($el, text)) {
-				removeWithAnimation(virus.removeAnimation);
-				return;
-			}
+		if ((virus.letter && isLetter($el, text)) ||
+		    (virus.nonLetter && !isLetter($el, text)) ||
+			(virus.number && isNumber($el, text)) ||
+			(virus.notNumber && !isNumber($el, text))) {
+			removeWithAnimation(virus.removeAnimation);
+			return;
 		}
-
-		if (virus.nonLetter) {
-			if (!isLetter($el, text)) {
-				removeWithAnimation(virus.removeAnimation);
-				return;
-			}
-		}
-
+		
 	});
+
 }
 
 
