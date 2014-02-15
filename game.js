@@ -9,24 +9,7 @@ GameState = {
 
 		for(virus in self.viruses) {
 			if(self.viruses.hasOwnProperty(virus)) {
-
-				var strType = viruses[virus].typeString;
-				var strProbability = viruses[virus].probability ? viruses[virus].probability + '%' : '';
-				var strName = viruses[virus].name;
-				var strDirection = viruses[virus].removeFront ? (viruses[virus].removeBack ? "both" : "front") : "back";
-				var strCooldown = viruses[virus].cooldown > 9999 ? '&infin;' : viruses[virus].cooldown + 's';
-				var strPercent = 0;
-
-				var newButton = '<a href="#" data-virus-id="' + virus + '" class="button blue">' +
-					'<div class="cldwrapper cooldown" style="background: -moz-linear-gradient(left, rgba(255,0,0,0) ' + strPercent + '%, rgba(255,0,0,0.5)' + (strPercent + 2) + '%, rgba(255,0,0,0.7) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, right top, color-stop(' + strPercent + '%,rgba(255,0,0,0)), color-stop(' + (strPercent + 2) + '%,rgba(255,0,0,0.5)), color-stop(100%,rgba(255,0,0,0.7))); /* Chrome,Safari4+ */">' +
-					'<table><tr><td class="bttopleft">' + strType +
-					'</td><td class="bttopright">' + strProbability + '</td></tr>' +
-					'<tr><td colspan=2 class="btmid">' + strName + '</td></tr>' +
-					'<tr><td class="bttopleft">' + strDirection + '</td>' +
-					'<td class="btbottomright">' + strCooldown + '</td></tr></table></div></a>';
-
-
-				$('#buttons').append(newButton);
+				$('#buttons').append(makeButton(viruses[virus], virus));
 
 				self.viruses[virus].cooldownLeft = 0;
 			}

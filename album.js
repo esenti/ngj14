@@ -12,22 +12,9 @@ AlbumState = {
 
 		for(virus in viruses) {
 			if(viruses.hasOwnProperty(virus)) {
-				var strType = viruses[virus].typeString;
-				var strProbability = viruses[virus].probability ? viruses[virus].probability + '%' : '';
-				var strName = viruses[virus].name;
-				var strDirection = viruses[virus].removeFront ? (viruses[virus].removeBack ? "both" : "front") : (viruses[virus].removeBack ? "back" : "random");
-				var strCooldown = viruses[virus].cooldown > 9999 ? '&infin;' : viruses[virus].cooldown + 's';
-
-				var newButton = '<a href="#" data-virus-id="' + virus + '" class="button blue ' + (viruses[virus].taken ? 'taken' : '') + '">' +
-					'<div class="cldwrapper">' +
-					'<table><tr><td class="bttopleft">' + strType +
-					'</td><td class="bttopright">' + strProbability + '</td></tr>' +
-					'<tr><td colspan=2 class="btmid">' + strName + '</td></tr>' +
-					'<tr><td class="bttopleft">' + strDirection + '</td>' +
-					'<td class="btbottomright">' + strCooldown + '</td></tr></table></div></a>';
+				$('#album').append(makeButton(viruses[virus], virus));
+				self.virusesCount++;
 			}
-			$('#album').append(newButton);
-			self.virusesCount++;
 		}
 
 
