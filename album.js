@@ -21,7 +21,7 @@ AlbumState = {
 		$('.button').click(function() {
 
 			var virus = viruses[$(this).data('virus-id')]
-			$('#details').html(JSON.stringify(virus) + '<a class="button pink glass back ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button pink glass shield start">start</a>');
+			$('#details').html(JSON.stringify(virus) + '<a class="button orange glass back xl ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button orange glass shield xl start">start</a>');
 
 			self.selectedVirus = virus;
 			self.selectedVirusId = $(this).data('virus-id');
