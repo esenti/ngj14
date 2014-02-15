@@ -116,21 +116,21 @@ var viruses = {}
 
 viruses.a = {
 	name: generateVirusName(),
-	typeString: 'A-Z + 0-9',
+	typeString: 'BCDFG + 0-9',
 	removeAnimation: 'rotateOut',
 	removeFront: 10,
-	letter: true,
+	letter: 'vowel',
 	numbers: true,
 	cooldown: 5
 };
 
 viruses.b = {
 	name: generateVirusName(),
-	typeString: 'NOT A-Z',
+	typeString: 'AEIOU',
 	removeAnimation: 'fadeOutDown',
 	removeBack: 5,
 	direction: "back",
-	nonLetter: true,
+	letter: 'consonant',
 	cooldown: 15
 };
 
@@ -227,7 +227,10 @@ function launchVirus(virus) {
 			return;
 		}
 
-		if ((virus.letter && isLetter($el, text)) ||
+		if ((virus.letter && isLetter($el, text) && (
+				(virus.letter == 'vowel' && isVowel($el, text)) ||
+				(virus.letter == 'consonant' && !isVowel($el, text)) ||
+				(virus.letter == true))) ||
 		    (virus.nonLetter && !isLetter($el, text)) ||
 			(virus.number && isNumber($el, text)) ||
 			(virus.notNumber && !isNumber($el, text))) {
@@ -293,4 +296,9 @@ function isNumber($el, text) {
 
 function isLetter($el, text) {
 	return !isNumber() && text.toUpperCase() !== text.toLowerCase();
+}
+
+function isVowel($el, text) {
+	var l = text.toUpperCase();
+	return l == 'E' || l == 'Y' || l == 'U' || l == 'O' || l == 'A';
 }
