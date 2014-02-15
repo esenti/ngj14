@@ -287,7 +287,7 @@ GameState = {
 				if(canAppend) {
 					$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
 					newline.html('');
-					$('.line').last().animate({top: 0}, 10000000, 'linear');
+					$('.line').last().animate({top: 0}, 10000, 'linear');
 					waitingForSpace = false;
 				}
 			}
