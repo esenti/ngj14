@@ -1,6 +1,6 @@
 AlbumState = {
 	enter: function() {
-		$('body').append('<div id="album"></div><div id="details"></div>');
+		$('body').append('<div id="album"></div><div id="details"><div id="atext"><div id="ascreen"></div></div><a class="button glass back xl ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button glass shield xl start">start</a></div>');
 
 		var self = this;
 
@@ -22,7 +22,7 @@ AlbumState = {
 
 			var virus = viruses[$(this).data('virus-id')]
 
-			var virusParams = "<ul>";
+			var virusParams = "<ul id=aul>";
 
 			var kills = "";
 			if (virus.letter) {
@@ -69,8 +69,7 @@ AlbumState = {
 
 			virusParams += "</ul>";
 
-
-			$('#details').html('<a class="button orange glass back xl ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button orange glass shield xl start">start</a>' + virusParams);
+			$('#ascreen').html(virusParams);
 
 			self.selectedVirus = virus;
 			self.selectedVirusId = $(this).data('virus-id');
