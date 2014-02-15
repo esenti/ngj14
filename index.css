@@ -4,23 +4,6 @@ body {
 	color: green;
 }
 
-.button {
-	width: 210px;
-	margin-right: 10px;
-	padding: 10px;
-	height: 100px;
-	background: red;
-	display: inline-block;
-	cursor: pointer;
-	position: relative;
-	color: white;
-	font-size: 21px;
-}
-
-.button:HOVER {
-	background: #ff4444;
-}
-
 #text {
 	/*background: yellow;*/
 	width: 1200px;
