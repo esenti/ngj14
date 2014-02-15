@@ -160,126 +160,137 @@ function generateVirusName() {
 }
 var viruses = {}
 
-// for(var i = 0; i < 9; i++) {
-// 	viruses[i] = {
-// 		name: generateVirusName(),
-// 		removeAnimation: 'rotateOut',
-// 	}
+for(var i = 0; i < 9; i++) {
+	viruses[i] = {
+		name: generateVirusName(),
+		removeAnimation: ['rotateOut', 'fadeOutDown', 'rollOut', 'flipOutY'][Math.floor(Math.random() * 4)],
+		typeString: ''
+	}
 
-// 	var r = Math.random();
-// 	if(r < 0.2) {
-// 		viruses[i].typeString = 'AEIOU';
-// 		viruses[i].letter = 'vowel';
-// 	} else if(r < 0.4) {
-// 		viruses[i].typeString = 'BCDFG';
-// 		viruses[i].letter = 'consonant';
-// 	}
+	var r = Math.random();
+	if(r <= 0.2) {
+		viruses[i].typeString += 'AEIOU';
+		viruses[i].letter = 'vowel';
+	} else if(r <= 0.4) {
+		viruses[i].typeString += 'BCDFG';
+		viruses[i].letter = 'consonant';
+	}
 
-// 	viruses[i].cooldown = Math.round(Math.random() * 10 + 5);
+	if(r >= 0.4 && r <= 0.7) {
+		viruses[i].nonLetter = true;
+		viruses[i].typeString += '?.!-';
+	}
 
-// 	if(Math.random() < 0.5) {
-// 		viruses[i].removeFront = Math.round(Math.random() * 10 + 5);
-// 	}
-// 	if(Math.random() < 0.5) {
-// 		viruses[i].removeBack = Math.round(Math.random() * 10 + 5);
-// 	}
-// 	if(Math.random() < 0.5) {
-// 		viruses[i].probability = Math.round(Math.random() * 50 + 20);
-// 	}
-// }
+	if(r >= 0.7) {
+		viruses[i].numbers = true;
+		viruses[i].typeString += '0-9';
+	}
+
+	viruses[i].cooldown = Math.round(Math.random() * 16 + 4);
+
+	if(Math.random() < 0.5) {
+		viruses[i].removeFront = Math.round(Math.random() * 10 + 5);
+	}
+	if(Math.random() < 0.5) {
+		viruses[i].removeBack = Math.round(Math.random() * 10 + 5);
+	}
+	if(Math.random() < 0.5) {
+		viruses[i].probability = Math.round(Math.random() * 50 + 20);
+	}
+}
 
 
-viruses.a = {
-	name: generateVirusName(),
-	typeString: 'BCDFG + 0-9',
-	removeAnimation: 'rotateOut',
-	removeFront: 10,
-	letter: 'vowel',
-	numbers: true,
-	cooldown: 5
-};
+// viruses.a = {
+// 	name: generateVirusName(),
+// 	typeString: 'BCDFG + 0-9',
+// 	removeAnimation: 'rotateOut',
+// 	removeFront: 10,
+// 	letter: 'vowel',
+// 	numbers: true,
+// 	cooldown: 5
+// };
 
-viruses.b = {
-	name: generateVirusName(),
-	typeString: 'AEIOU',
-	removeAnimation: 'fadeOutDown',
-	removeBack: 5,
-	direction: "back",
-	letter: 'consonant',
-	cooldown: 15
-};
+// viruses.b = {
+// 	name: generateVirusName(),
+// 	typeString: 'AEIOU',
+// 	removeAnimation: 'fadeOutDown',
+// 	removeBack: 5,
+// 	direction: "back",
+// 	letter: 'consonant',
+// 	cooldown: 15
+// };
 
-viruses.c = {
-	name: generateVirusName(),
-	typeString: '<- 50% ->',
-	removeAnimation: 'flipOutY',
-	removeFront: 10,
-	removeBack: 10,
-	probability: 50,
-	letter: true,
-	nonLetter: true,
-	numbers: true,
-	cooldown: 1000000
-};
+// viruses.c = {
+// 	name: generateVirusName(),
+// 	typeString: '<- 50% ->',
+// 	removeAnimation: 'flipOutY',
+// 	removeFront: 10,
+// 	removeBack: 10,
+// 	probability: 50,
+// 	letter: true,
+// 	nonLetter: true,
+// 	numbers: true,
+// 	cooldown: 1000000
+// };
 
-viruses.d = {
-	name: generateVirusName(),
-	typeString: '0-9',
-	number: true,
-	probability: 50,
-	removeAnimation: 'rollOut',
-	cooldown: 0.1
-};
+// viruses.d = {
+// 	name: generateVirusName(),
+// 	typeString: '0-9',
+// 	number: true,
+// 	probability: 50,
+// 	removeAnimation: 'rollOut',
+// 	cooldown: 0.1
+// };
 
-viruses.e = {
-	name: generateVirusName(),
-	typeString: '☃',
-	removeAnimation: 'flipOutY',
-	letter: true,
-	nonLetter: true,
-	numbers: true,
-	cooldown: 1000000
-};
+// viruses.e = {
+// 	name: generateVirusName(),
+// 	typeString: '☃',
+// 	removeAnimation: 'flipOutY',
+// 	letter: true,
+// 	nonLetter: true,
+// 	numbers: true,
+// 	cooldown: 1000000
+// };
 
-viruses.fuck = {
-	name: generateVirusName(),
-	typeString: 'A-Z',
-	removeAnimation: 'flipOutY',
-	letter: true,
-	cooldown: 10,
-	probability: 30,
-};
+// viruses.fuck = {
+// 	name: generateVirusName(),
+// 	typeString: 'A-Z',
+// 	removeAnimation: 'flipOutY',
+// 	letter: true,
+// 	cooldown: 10,
+// 	probability: 30,
+// };
 
-viruses.shit = {
-	name: generateVirusName(),
-	typeString: 'AEIOU',
-	removeAnimation: 'flipOutY',
-	letter: 'vowel',
-	cooldown: 5,
-	nonLetter: true,
-	removeFront: 20
-};
+// viruses.shit = {
+// 	name: generateVirusName(),
+// 	typeString: 'AEIOU',
+// 	removeAnimation: 'flipOutY',
+// 	letter: 'vowel',
+// 	cooldown: 5,
+// 	nonLetter: true,
+// 	removeFront: 20
+// };
 
-viruses.dick = {
-	name: generateVirusName(),
-	typeString: 'BFG9000',
-	removeAnimation: 'flipOutY',
-	letter: 'consonant',
-	cooldown: 5,
-	nonLetter: true,
-	removeFront: 20
-};
+// viruses.dick = {
+// 	name: generateVirusName(),
+// 	typeString: 'BFG9000',
+// 	removeAnimation: 'flipOutY',
+// 	letter: 'consonant',
+// 	cooldown: 5,
+// 	nonLetter: true,
+// 	removeFront: 20
+// };
 
-viruses.cunt = {
-	name: generateVirusName(),
-	typeString: 'Ass',
-	removeAnimation: 'flipOutY',
-	letter: 'consonant',
-	cooldown: 5,
-	nonLetter: true,
-	removeFront: 20,
-	direction: 'mutherfucker'
-};
+// viruses.cunt = {
+// 	name: generateVirusName(),
+// 	typeString: 'Ass',
+// 	removeAnimation: 'flipOutY',
+// 	letter: 'consonant',
+// 	cooldown: 5,
+// 	nonLetter: true,
+// 	removeFront: 20,
+// 	direction: 'mutherfucker'
+// };
 
 function frame() {
 	now = Date.now();
@@ -424,7 +435,7 @@ function isVowel($el, text) {
 
 function makeButton(virus, id, giraffe) {
 	var strType = virus.typeString;
-	var strProbability = virus.probability ? virus.probability + '%' : (virus.removeFront ? virus.removeFront + ' letters' : (virus.removeBack ? virus.removeBack + ' letters' : 'all'));
+	var strProbability = (virus.removeFront ? virus.removeFront : '-') + '/' + (virus.removeBack ? virus.removeBack : '-') + ' ' + (virus.probability ? virus.probability + '%' : '');
 	var strName = virus.name;
 	var strDirection = virus.removeFront ? (virus.removeBack ? "both" : "front") : (virus.removeBack ? "back" : "random");
 	var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
