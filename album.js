@@ -4,7 +4,11 @@ AlbumState = {
 
 		var self = this;
 
-		self.taken = 0;
+		if(typeof self.taken === 'undefined') {
+			self.taken = 0;
+		}
+
+		self.virusesCount = 0;
 
 		for(virus in viruses) {
 			if(viruses.hasOwnProperty(virus)) {
@@ -14,7 +18,7 @@ AlbumState = {
 				var strDirection = viruses[virus].removeFront ? (viruses[virus].removeBack ? "both" : "front") : "back";
 				var strCooldown = viruses[virus].cooldown > 9999 ? '&infin;' : viruses[virus].cooldown + 's';
 
-				var newButton = '<a href="#" data-virus-id="' + virus + '" class="button blue">' +
+				var newButton = '<a href="#" data-virus-id="' + virus + '" class="button blue ' + (viruses[virus].taken ? 'taken' : '') + '">' +
 					'<div class="cldwrapper">' +
 					'<table><tr><td class="bttopleft">' + strType +
 					'</td><td class="bttopright">' + strProbability + '</td></tr>' +
@@ -23,6 +27,7 @@ AlbumState = {
 					'<td class="btbottomright">' + strCooldown + '</td></tr></table></div></a>';
 			}
 			$('#album').append(newButton);
+			self.virusesCount++;
 		}
 
 
@@ -54,7 +59,19 @@ AlbumState = {
 		});
 
 		$('#details').on('click', '.start', function() {
-			setState(GameState, viruses);
+
+			if((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount)) {
+				return;
+			}
+
+			var takenViruses = [];
+
+			for(virus in viruses) {
+				if(viruses.hasOwnProperty(virus) && viruses[virus].taken) {
+					takenViruses.push(viruses[virus]);
+				}
+			}
+			setState(GameState, takenViruses);
 		});
 	},
 
