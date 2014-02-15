@@ -3,8 +3,7 @@ MenuState = {
 		$('body').append('<div>This is menu!</div>');
 
 		$('div').click(function() {
-			setState(GameState);
-
+			setState(AlbumState);
 		})
 	},
 
