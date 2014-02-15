@@ -24,14 +24,14 @@ function update(delta) {
 
 			$('.line').each(function() {
 
-				if($(this).position().top >= (600 - 2 * $(this).height())) {
+				if($(this).position().top >= ($('#text').height() - 2 * $(this).height())) {
 					canAppend = false;
 					waitingForSpace = true;
 				}
 			});
 
 			if(canAppend) {
-				$('#text').append('<div class="line" style="top: 580px">' + newline.html() + '<div>');
+				$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
 				newline.html('');
 				waitingForSpace = false;
 			}
