@@ -1,16 +1,21 @@
+@import url(http://fonts.googleapis.com/css?family=VT323);
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+
 body {
-	font-family: monospace;
+	font-family: 'Press Start 2P';
 	background: black;
 	color: green;
+	background-image: url(noise.png);
 }
 
 #text {
-	/*background: yellow;*/
+	background: black;
 	width: 1200px;
 	height: 300px;
 	position: relative;
 	border-top: 1px dashed green;
 	margin-top: 20px;
+
 }
 
 .newline {
@@ -68,16 +73,11 @@ body {
 	float: left;
 }
 
-.take {
-	background: blue;
+.take , .untake {
 	width: 200px;
 	height: 100px;
-}
-
-.untake {
-	background: yellow;
-	width: 200px;
-	height: 100px;
+	text-align: center;
+	font-size: 120%;
 }
 
 #album .taken {
@@ -85,7 +85,8 @@ body {
 }
 
 .start {
-	background: red;
-	width: 200px;
+	width: 162px;
+	text-align: center;
 	height: 100px;
+	font-size: 120%;
 }
