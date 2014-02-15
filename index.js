@@ -217,6 +217,36 @@ viruses.fuck = {
 	probability: 30,
 };
 
+viruses.shit = {
+	name: generateVirusName(),
+	typeString: 'AEIOU',
+	removeAnimation: 'flipOutY',
+	letter: 'vowel',
+	cooldown: 5,
+	nonLetter: true,
+	removeFront: 20
+};
+
+viruses.dick = {
+	name: generateVirusName(),
+	typeString: 'BFG9000',
+	removeAnimation: 'flipOutY',
+	letter: 'consonant',
+	cooldown: 5,
+	nonLetter: true,
+	removeFront: 20
+};
+
+viruses.cunt = {
+	name: generateVirusName(),
+	typeString: 'Ass',
+	removeAnimation: 'flipOutY',
+	letter: 'consonant',
+	cooldown: 5,
+	nonLetter: true,
+	removeFront: 20,
+	direction: 'mutherfucker'
+};
 
 function frame() {
 	now = Date.now();
@@ -357,4 +387,22 @@ function isLetter($el, text) {
 function isVowel($el, text) {
 	var l = text.toUpperCase();
 	return l == 'E' || l == 'Y' || l == 'U' || l == 'O' || l == 'A';
+}
+
+function makeButton(virus, id) {
+	var strType = virus.typeString;
+	var strProbability = virus.probability ? virus.probability + '%' : '';
+	var strName = virus.name;
+	var strDirection = virus.removeFront ? (virus.removeBack ? "both" : "front") : (virus.removeBack ? "back" : "random");
+	var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
+
+	var newButton = '<a href="#" data-virus-id="' + id + '" class="button blue ' + (virus.taken ? 'taken' : '') + '">' +
+		'<div class="cldwrapper">' +
+		'<table><tr><td class="bttopleft">' + strType +
+		'</td><td class="bttopright">' + strProbability + '</td></tr>' +
+		'<tr><td colspan=2 class="btmid">' + strName + '</td></tr>' +
+		'<tr><td class="bttopleft">' + strDirection + '</td>' +
+		'<td class="btbottomright">' + strCooldown + '</td></tr></table></div></a>';
+
+	return newButton;
 }
