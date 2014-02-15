@@ -12,6 +12,7 @@ body {
 	background: red;
 	display: inline-block;
 	cursor: pointer;
+	position: relative;
 }
 
 .button:HOVER {
@@ -44,4 +45,25 @@ body {
 
 .removed {
 	color: #666666;
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+	font-size: 62px;
+	text-align: center;
+	color: black;
+}
+
+.cooling-down {
+	background: #880000;
+	cursor: not-allowed;
+}
+
+.cooling-down:HOVER {
+	background: #880000;
 }

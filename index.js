@@ -10,6 +10,13 @@ function update(delta) {
 
 	toLetter -= delta;
 
+	for(virus in viruses) {
+		if(viruses.hasOwnProperty(virus)) {
+			viruses[virus].cooldownLeft -= delta;
+			$('div[data-virus-id=' + virus + ']').find('.overlay').text(viruses[virus].cooldownLeft > 0 ? Math.round(viruses[virus].cooldownLeft) : '');
+		}
+	}
+
 	if(toLetter <= 0) {
 		toLetter = 0.1;
 
@@ -53,9 +60,40 @@ function update(delta) {
 }
 
 $(function() {
+
+	viruses = {}
+
+	viruses.c = {
+		letter: 'C',
+		cooldown: 10,
+		cooldownLeft: 0
+	};
+
+	viruses.d = {
+		letter: 'D'
+	};
+
+	for(virus in viruses) {
+		if(viruses.hasOwnProperty(virus)) {
+			$('#buttons').append('<div class="button" data-virus-id="' + virus + '">' + viruses[virus].letter + '<div class="overlay"></div></div>');
+		}
+	}
+
 	$('.button').click(function() {
+
+		var virus = viruses[$(this).data('virus-id')]
+
+		console.log(virus)
+
+		if(virus.cooldownLeft > 0) {
+			return;
+		}
+
+		virus.cooldownLeft = virus.cooldown;
+		$(this).addClass('cooling-down');
+
 		$('.line .letter').each(function(i, e) {
-			if($(this).text() === 'C') {
+			if($(this).text() === virus.letter) {
 				$(this).addClass('removed');
 			}
 		});
