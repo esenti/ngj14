@@ -58,7 +58,7 @@ AlbumState = {
 					takenViruses.push(viruses[virus]);
 				}
 			}
-			setState(GameState, takenViruses);
+			setState(GameState, takenViruses, GameState.level !== undefined ? GameState.level + 1 : 0);
 		});
 	},
 

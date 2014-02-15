@@ -1,6 +1,10 @@
 GameState = {
 
-	enter: function(viruses) {
+	enter: function(viruses, level) {
+
+		console.log('Level ' + level + ', bitches!')
+
+		this.level = level;
 
 		$('body').append('<div id="buttons"></div><div id="life"></div><div id="text"></div><div class="newline"></div>');
 
@@ -33,7 +37,7 @@ GameState = {
 
 		this.life = startLife;
 		this.outOfLetters = false;
-		this.letterIterator = getLetterIterator(0);
+		this.letterIterator = getLetterIterator(this.level);
 	},
 
 	exit: function() {
