@@ -140,7 +140,7 @@ var gameTime = 30000;
 
 var startLife = 100;
 
-var VirNameBase=new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "4K", "4096", "5lo", "Abraxas", "Acid", "Acme", "ABC", "AIDS", "AntiCMOS", "Bomber", "CommanderBomber", "flu", "Byte", "Bandit", "Christmas", "Commwarrior", "Conficker", "Creeper", "Eliza", "ILOVEYOU", "INIT", "Jerusalem", "worm", "Lamer", "Exterminator", "Garfield", "Michelangelo", "Navidad", "Boot", "Techno", "Whale", "Doom", "Sasser", "Storm", "Dick", "Giraffe", "Geraffe", "Longhorse");
+var VirNameBase=new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "4K", "4096", "5lo", "Abraxas", "Acid", "Acme", "ABC", "AIDS", "AntiCMOS", "Bomber", "CommanderBomber", "flu", "Byte", "Bandit", "Christmas", "Commwarrior", "Conficker", "Creeper", "Eliza", "ILOVEYOU", "INIT", "Jerusalem", "worm", "Lamer", "Exterminator", "Garfield", "Michelangelo", "Navidad", "Boot", "Techno", "Whale", "Doom", "Sasser", "Storm", "Dick", "Giraffe", "Geraffe", "Longhorse", "Cock", "Cock", "Cock");
 var VirNameDot=new Array(".",".",".",".",".","_",":","-","+");
 
 function generateVirusName() {
@@ -422,14 +422,14 @@ function isVowel($el, text) {
 	return l == 'E' || l == 'Y' || l == 'U' || l == 'O' || l == 'A';
 }
 
-function makeButton(virus, id) {
+function makeButton(virus, id, giraffe) {
 	var strType = virus.typeString;
 	var strProbability = virus.probability ? virus.probability + '%' : '';
 	var strName = virus.name;
 	var strDirection = virus.removeFront ? (virus.removeBack ? "both" : "front") : (virus.removeBack ? "back" : "random");
 	var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
 
-	var newButton = '<a href="#" data-virus-id="' + id + '" class="button blue ' + (virus.taken ? 'taken' : '') + '">' +
+	var newButton = '<a href="#" data-virus-id="' + id + '" class="button ' + (virus.taken && giraffe ? 'green' : 'blue') + '">' +
 		'<div class="cldwrapper">' +
 		'<table><tr><td class="bttopleft">' + strType +
 		'</td><td class="bttopright">' + strProbability + '</td></tr>' +

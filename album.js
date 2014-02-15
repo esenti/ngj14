@@ -12,7 +12,7 @@ AlbumState = {
 
 		for(virus in viruses) {
 			if(viruses.hasOwnProperty(virus)) {
-				$('#album').append(makeButton(viruses[virus], virus));
+				$('#album').append(makeButton(viruses[virus], virus, true));
 				self.virusesCount++;
 			}
 		}
@@ -30,7 +30,8 @@ AlbumState = {
 		$('#details').on('click', '.take', function() {
 			if(self.taken < 5) {
 				self.selectedVirus.taken = true;
-				$('a[data-virus-id=' + self.selectedVirusId + ']').addClass('taken');
+				$('a[data-virus-id=' + self.selectedVirusId + ']').addClass('green');
+				$('a[data-virus-id=' + self.selectedVirusId + ']').removeClass('blue');
 				$(this).removeClass('take');
 				$(this).addClass('untake');
 				self.taken += 1;
@@ -39,7 +40,8 @@ AlbumState = {
 
 		$('#details').on('click', '.untake', function() {
 			self.selectedVirus.taken = false;
-			$('a[data-virus-id=' + self.selectedVirusId + ']').removeClass('taken');
+			$('a[data-virus-id=' + self.selectedVirusId + ']').addClass('blue');
+			$('a[data-virus-id=' + self.selectedVirusId + ']').removeClass('green');
 			$(this).removeClass('untake');
 			$(this).addClass('take');
 			self.taken -= 1;
