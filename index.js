@@ -94,6 +94,9 @@ Niestare były rączki, co je tak rzuciły.";
 var isInSnowmanState = false;
 
 var gameSpeed = 0.01;
+var gameTime = 10000;
+
+var startLife = 100;
 
 var viruses = {}
 
@@ -234,7 +237,7 @@ GameState = {
 			launchVirus(virus);
 		})
 
-		this.life = 10;
+		this.life = startLife;
 		this.outOfLetters = false;
 		this.letterIterator = getLetterIterator(0);
 	},
@@ -271,7 +274,7 @@ GameState = {
 				}
 
 				if (nextLetter != '\n' && nextLetter != undefined) {
-					newline.html(newline.html() + '<span class="letter alive ' + (isInSnowmanState ? 'hot' : '') + '">' + nextLetter + '</span>');
+					newline.html(newline.html() + '<span class="letter '+ ((nextLetter != ' ') ? 'alive' : '') + ' ' + (isInSnowmanState ? 'hot' : '') + '">' + nextLetter + '</span>');
 				}
 			}
 
@@ -289,14 +292,18 @@ GameState = {
 				if(canAppend) {
 					$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
 					newline.html('');
-					$('.line').last().animate({top: 0}, 10000, 'linear');
+					$('.line').last().animate({top: 0}, gameTime, 'linear');
 					waitingForSpace = false;
 				}
 			}
 
 			$('.line').each(function() {
 				if($(this).position().top <= 0) {
-					self.life -= $(this).find('.letter:not(.removed)').length;
+					wwords = $(this).find('.alive:not(.removed)');
+					wwordsHot = $(this).find('.alive.hot:not(.removed)');
+					self.life -= wwords.length;
+					self.life -= wwordsHot.length * 10;
+					console.log(wwords.length, wwordsHot.length);
 					$(this).remove();
 				}
 			});
