@@ -98,10 +98,25 @@ var gameTime = 10000;
 
 var startLife = 100;
 
+var VirNameBase=new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "4K", "4096", "5lo", "Abraxas", "Acid", "Acme", "ABC", "AIDS", "AntiCMOS", "Bomber", "CommanderBomber", "flu", "Byte", "Bandit", "Christmas", "Commwarrior", "Conficker", "Creeper", "Eliza", "ILOVEYOU", "INIT", "Jerusalem", "worm", "Lamer", "Exterminator", "Garfield", "Michelangelo", "Navidad", "Boot", "Techno", "Whale", "Doom", "Sasser", "Storm");
+var VirNameDot=new Array(".",".",".",".",".","_",":","-","+");
+
+function generateVirusName() {
+	virus = VirNameBase[Math.floor((Math.random()*VirNameBase.length))];
+	if (Math.random() > 0.8) { virus += VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + String.fromCharCode(65+Math.floor(Math.random()*4)); }
+	if (Math.random() > 0.9) { virus += VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + Math.floor(Math.random()*9999); }
+	else if (Math.random() > 0.80) { virus += VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + "19" + Math.floor(70+Math.random()*29); }
+	else if (Math.random() > 0.75) { virus += VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + "20" + Math.floor(Math.random()*14); }
+	else if (Math.random() > 0.65) { virus += VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + Math.floor(Math.random()*9); }
+	if (Math.random() > 0.8) { virus += VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + VirNameBase[Math.floor((Math.random()*VirNameBase.length))]; }
+	return virus;
+}
 var viruses = {}
 
+
 viruses.a = {
-	name: 'A-Z + 0-9',
+	name: generateVirusName(),
+	typeString: 'A-Z + 0-9',
 	removeAnimation: 'rotateOut',
 	removeFront: 10,
 	letter: true,
@@ -110,7 +125,8 @@ viruses.a = {
 };
 
 viruses.b = {
-	name: 'NOT A-Z',
+	name: generateVirusName(),
+	typeString: 'NOT A-Z',
 	removeAnimation: 'fadeOutDown',
 	removeBack: 5,
 	direction: "back",
@@ -119,7 +135,8 @@ viruses.b = {
 };
 
 viruses.c = {
-	name: '<- 50% ->',
+	name: generateVirusName(),
+	typeString: '<- 50% ->',
 	removeAnimation: 'flipOutY',
 	removeFront: 10,
 	removeBack: 10,
@@ -131,7 +148,8 @@ viruses.c = {
 };
 
 viruses.d = {
-	name: '0-9',
+	name: generateVirusName(),
+	typeString: '0-9',
 	number: true,
 	probability: 50,
 	removeAnimation: 'rollOut',
@@ -139,7 +157,8 @@ viruses.d = {
 };
 
 viruses.e = {
-	name: 'ONE TIME ALL',
+	name: generateVirusName(),
+	typeString: '☃',
 	removeAnimation: 'flipOutY',
 	letter: true,
 	nonLetter: true,
@@ -202,12 +221,12 @@ GameState = {
 		for(virus in viruses) {
 			if(viruses.hasOwnProperty(virus)) {
 
-				var strType = 'A-Z';
-				var strProbability = '3%';
-				var strName = viruses[virus].name; //'Sasser.131'
-				var strDirection = 'front';
-				var strCooldown = '4s';
-				var strPercent = 50;	
+				var strType = viruses[virus].typeString;
+				var strProbability = viruses[virus].probability ? viruses[virus].probability + '%' : '';
+				var strName = viruses[virus].name;
+				var strDirection = viruses[virus].removeFront ? (viruses[virus].removeBack ? "both" : "front") : "back";
+				var strCooldown = viruses[virus].cooldown > 9999 ? '&infin;' : viruses[virus].cooldown + 's';
+				var strPercent = 0;	
 
 				var newButton = '<a href="#" data-virus-id="' + virus + '" class="button blue">' +
 					'<div class="cldwrapper cooldown" style="background: -moz-linear-gradient(left, rgba(255,0,0,0) ' + strPercent + '%, rgba(255,0,0,0.5)' + (strPercent + 2) + '%, rgba(255,0,0,0.7) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, right top, color-stop(' + strPercent + '%,rgba(255,0,0,0)), color-stop(' + (strPercent + 2) + '%,rgba(255,0,0,0.5)), color-stop(100%,rgba(255,0,0,0.7))); /* Chrome,Safari4+ */">' + 
