@@ -21,7 +21,7 @@ AlbumState = {
 		$('.button').click(function() {
 
 			var virus = viruses[$(this).data('virus-id')]
-			$('#details').html(JSON.stringify(virus) + '<a class="button pink glass back ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button pink glass shield start">start</a>');
+			$('#details').html(JSON.stringify(virus) + '<a class="button orange glass back xl ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button orange glass shield xl start">start</a>');
 
 			self.selectedVirus = virus;
 			self.selectedVirusId = $(this).data('virus-id');
@@ -47,9 +47,9 @@ AlbumState = {
 
 		$('#details').on('click', '.start', function() {
 
-			if((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount)) {
-				return;
-			}
+			// if((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount)) {
+			// 	return;
+			// }
 
 			var takenViruses = [];
 
@@ -58,7 +58,7 @@ AlbumState = {
 					takenViruses.push(viruses[virus]);
 				}
 			}
-			setState(GameState, takenViruses);
+			setState(GameState, takenViruses, GameState.level !== undefined ? GameState.level + 1 : 0);
 		});
 	},
 
