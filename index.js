@@ -140,7 +140,7 @@ var gameTime = 30000;
 
 var startLife = 100;
 
-var VirNameBase=new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "4K", "4096", "5lo", "Abraxas", "Acid", "Acme", "ABC", "AIDS", "AntiCMOS", "Bomber", "CommanderBomber", "flu", "Byte", "Bandit", "Christmas", "Commwarrior", "Conficker", "Creeper", "Eliza", "ILOVEYOU", "INIT", "Jerusalem", "worm", "Lamer", "Exterminator", "Garfield", "Michelangelo", "Navidad", "Boot", "Techno", "Whale", "Doom", "Sasser", "Storm");
+var VirNameBase=new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "4K", "4096", "5lo", "Abraxas", "Acid", "Acme", "ABC", "AIDS", "AntiCMOS", "Bomber", "CommanderBomber", "flu", "Byte", "Bandit", "Christmas", "Commwarrior", "Conficker", "Creeper", "Eliza", "ILOVEYOU", "INIT", "Jerusalem", "worm", "Lamer", "Exterminator", "Garfield", "Michelangelo", "Navidad", "Boot", "Techno", "Whale", "Doom", "Sasser", "Storm", "Dick");
 var VirNameDot=new Array(".",".",".",".",".","_",":","-","+");
 
 function generateVirusName() {
@@ -154,6 +154,34 @@ function generateVirusName() {
 	return virus;
 }
 var viruses = {}
+
+// for(var i = 0; i < 9; i++) {
+// 	viruses[i] = {
+// 		name: generateVirusName(),
+// 		removeAnimation: 'rotateOut',
+// 	}
+
+// 	var r = Math.random();
+// 	if(r < 0.2) {
+// 		viruses[i].typeString = 'AEIOU';
+// 		viruses[i].letter = 'vowel';
+// 	} else if(r < 0.4) {
+// 		viruses[i].typeString = 'BCDFG';
+// 		viruses[i].letter = 'consonant';
+// 	}
+
+// 	viruses[i].cooldown = Math.round(Math.random() * 10 + 5);
+
+// 	if(Math.random() < 0.5) {
+// 		viruses[i].removeFront = Math.round(Math.random() * 10 + 5);
+// 	}
+// 	if(Math.random() < 0.5) {
+// 		viruses[i].removeBack = Math.round(Math.random() * 10 + 5);
+// 	}
+// 	if(Math.random() < 0.5) {
+// 		viruses[i].probability = Math.round(Math.random() * 50 + 20);
+// 	}
+// }
 
 
 viruses.a = {
