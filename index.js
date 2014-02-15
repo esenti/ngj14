@@ -91,6 +91,8 @@ Na niem noty i książki; wszystko porzucano\n\
 Niedbale i bezładnie; nieporządek miły!\n\
 Niestare były rączki, co je tak rzuciły.";
 
+var isInSnowmanState = false;
+
 var gameSpeed = 0.01;
 
 var viruses = {}
@@ -269,7 +271,7 @@ GameState = {
 				}
 
 				if (nextLetter != '\n' && nextLetter != undefined) {
-					newline.html(newline.html() + '<span class="letter alive">' + nextLetter + '</span>');
+					newline.html(newline.html() + '<span class="letter alive ' + (isInSnowmanState ? 'hot' : '') + '">' + nextLetter + '</span>');
 				}
 			}
 
@@ -342,6 +344,10 @@ function getLetterIterator(level) {
 
 	return function() {
 		var letter = levelText[level][i++];
+		if (letter == "☃") {
+			isInSnowmanState = !isInSnowmanState;
+			letter = levelText[level][i++];
+		}
 		return letter;
 	}
 }

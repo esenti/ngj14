@@ -57,3 +57,7 @@ body {
 #text span {
 	display: inline-block;
 }
+
+.hot {
+	color: red;
+}
