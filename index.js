@@ -119,4 +119,30 @@ $(function() {
 	waitingForSpace = false;
 
 	window.requestAnimationFrame(frame);
-})
+});
+
+
+function button1() {
+	$('.line .letter').each(function(i, e) {
+		if($(this).text() === 'C') {
+			$(this).addClass('removed');
+		}
+	});
+}
+
+function button2() {
+	$('.line .letter').each(function(i, e) {
+		if($(this).text() !== 'C') {
+			$(this).addClass('removed');
+		}
+	});
+}
+
+function button3() {
+}
+
+function button4() {
+}
+
+function button5() {
+}

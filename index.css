@@ -67,3 +67,7 @@ body {
 .cooling-down:HOVER {
 	background: #880000;
 }
+
+#text span {
+	display: inline-block;
+}
