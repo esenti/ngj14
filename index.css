@@ -44,16 +44,6 @@ body {
 	color: black;
 }
 
-.cooling-down {
-	background: #880000;
-	color: gray;
-	cursor: not-allowed;
-}
-
-.cooling-down:HOVER {
-	background: #880000;
-}
-
 #text span {
 	display: inline-block;
 }

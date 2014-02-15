@@ -127,7 +127,7 @@ viruses.c = {
 	letter: true,
 	nonLetter: true,
 	numbers: true,
-	cooldown: 0
+	cooldown: 1000000
 };
 
 viruses.d = {
@@ -143,7 +143,8 @@ viruses.e = {
 	removeAnimation: 'flipOutY',
 	letter: true,
 	nonLetter: true,
-	numbers: true
+	numbers: true,
+	cooldown: 1000000
 };
 
 
@@ -260,8 +261,7 @@ GameState = {
 			
 				var strPercent = (!viruses[virus].cooldown) ? 100 : (100 - (viruses[virus].cooldownLeft / viruses[virus].cooldown) * 100);
 				strPercent = Math.min(100, Math.max(0, strPercent));
-console.log(virus, viruses[virus].cooldownLeft, viruses[virus].cooldown, strPercent);
-				
+
 				$el = $("#buttons [data-virus-id='" + virus + "'] .cldwrapper");
 				$el.attr('style', 'background: -moz-linear-gradient(left, rgba(255,0,0,0) ' + strPercent + '%, rgba(255,0,0,0.5)' + (strPercent + 2) + '%, rgba(255,0,0,0.7) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, right top, color-stop(' + strPercent + '%,rgba(255,0,0,0)), color-stop(' + (strPercent + 2) + '%,rgba(255,0,0,0.5)), color-stop(100%,rgba(255,0,0,0.7))); /* Chrome,Safari4+ */">');
 
