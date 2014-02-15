@@ -1,5 +1,7 @@
 body {
 	font-family: monospace;
+	background: black;
+	color: green;
 }
 
 .button {
@@ -12,20 +14,24 @@ body {
 }
 
 #text {
-	background: yellow;
+	/*background: yellow;*/
 	width: 1200px;
 	height: 600px;
-
+	position: relative;
+	border-top: 1px dashed green;
+	margin-top: 20px;
 }
 
 .newline {
-	background: green;
+	/*background: green;*/
 	height: 40px;
 	width: 1200px;
 }
 
 .line {
-	background: blue;
+	/*background: blue;*/
 	height: 40px;
 	width: 1200px;
+	position: absolute;
+	white-space: pre-wrap;
 }
