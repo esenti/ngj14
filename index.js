@@ -175,12 +175,17 @@ function frame() {
 	currentState.update(delta)
 }
 
-function setState(state) {
+function setState() {
+
+	var args = Array.prototype.slice.call(arguments);
+
+	var state = args.shift();
+
 	if(typeof currentState !== 'undefined') {
 		currentState.exit();
 	}
 
-	state.enter();
+	state.enter.apply(state, args);
 	currentState = state;
 }
 
