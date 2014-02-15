@@ -63,19 +63,29 @@ $(function() {
 
 	viruses = {}
 
-	viruses.c = {
-		letter: 'C',
-		cooldown: 10,
+	viruses.a = {
+		name: 'Letters',
+		removeAnimation: 'flipOutY',
+		letter: true,
+		cooldown: 5,
 		cooldownLeft: 0
 	};
 
-	viruses.d = {
-		letter: 'D'
+	viruses.b = {
+		name: 'Non letters',
+		removeAnimation: 'fadeOutDown',
+		nonLetter: true,
+		cooldown: 15,
+		cooldownLeft: 0
+	};
+
+	viruses.c = {
+		name: 'Nothing'
 	};
 
 	for(virus in viruses) {
 		if(viruses.hasOwnProperty(virus)) {
-			$('#buttons').append('<div class="button" data-virus-id="' + virus + '">' + viruses[virus].letter + '<div class="overlay"></div></div>');
+			$('#buttons').append('<div class="button" data-virus-id="' + virus + '">' + viruses[virus].name + '<div class="overlay"></div></div>');
 		}
 	}
 
@@ -92,11 +102,7 @@ $(function() {
 		virus.cooldownLeft = virus.cooldown;
 		$(this).addClass('cooling-down');
 
-		$('.line .letter').each(function(i, e) {
-			if($(this).text() === virus.letter) {
-				$(this).addClass('removed');
-			}
-		});
+		launchVirus(virus);
 
 		$('.line').each(function(i, e) {
 			var keep = false;
@@ -121,28 +127,43 @@ $(function() {
 	window.requestAnimationFrame(frame);
 });
 
-
-function button1() {
+function forEveryLetter(callback) {
 	$('.line .letter').each(function(i, e) {
-		if($(this).text() === 'C') {
-			$(this).addClass('removed');
-		}
+		$el = $(this);
+		text = $el.text();
+		callback($el, text);
 	});
 }
 
-function button2() {
-	$('.line .letter').each(function(i, e) {
-		if($(this).text() !== 'C') {
-			$(this).addClass('removed');
-		}
+function removeWithAnimation(animation) {
+	$el.animateCSS(animation, 0, function(a) {
+		$(this).addClass("removed");
 	});
 }
 
-function button3() {
+function isLetter($el, text) {
+	return text.toUpperCase() !== text.toLowerCase();
 }
 
-function button4() {
+
+function launchVirus(virus) {
+	forEveryLetter( function($el, text) {
+
+		if (virus.letter) {
+			if (isLetter($el, text)) {
+				removeWithAnimation(virus.removeAnimation);
+				return;
+			}
+		}
+
+		if (virus.nonLetter) {
+			if (!isLetter($el, text)) {
+				removeWithAnimation(virus.removeAnimation);
+				return;
+			}
+		}
+
+	});
 }
 
-function button5() {
-}
+
