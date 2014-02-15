@@ -1,28 +1,25 @@
 
 var levelText = [];
 
-levelText[0] = "Litwo! Ojczyzno moja! ty jesteś jak zdrowie.\n\
-Ile cię trzeba cenić, ten tylko się dowie,\n\
-1237           \n\
-???             \n\
-Kto cię stracił. Dziś piękność twą w całej ozdobie\n\
+levelText[0] = "Litwo! ☃Ojczyzno moja!☃ ty jesteś jak zdrowie.\n\
+1237\n\
+???\n\
+Kto cię stracił. Dziś ☃piękność☃ twą w całej ozdobie\n\
 Widzę i opisuję, bo tęsknię po tobie.\n\
 \n\
-"
-
-levelText[1] = "Panno Święta, co jasnej bronisz Częstochowy\n\
-I w Ostrej świecisz Bramie! Ty, co gród zamkowy\n\
+Panno Święta, co jasnej bronisz Częstochowy\n\
+I w Ostrej ☃świecisz☃ Bramie! Ty, co gród zamkowy\n\
 Nowogródzki ochraniasz z jego wiernym ludem!\n\
-Jak mnie dziecko do zdrowia powróciłaś cudem\n\
+Jak mnie dziecko do zdrowia powróciłaś ☃cudem☃\n\
 (Gdy od płaczącej matki pod Twoją opiekę\n\
-Ofiarowany, martwą podniosłem powiekę\n\
+Ofiarowany, ☃martwą podniosłem powiekę☃\n\
 I zaraz mogłem pieszo do Twych świątyń progu\n\
 Iść za wrócone życie podziękować Bogu),\n\
 Tak nas powrócisz cudem na Ojczyzny łono.\n\
 Tymczasem przenoś moję duszę utęsknioną\n\
 Do tych pagórków leśnych, do tych łąk zielonych,\n\
 Szeroko nad błękitnym Niemnem rozciągnionych;\n\
-534534 52345 423542354235 2435 4235 4235 4524353245234 52435 4235 4235 54423532452345 52345 4235 452345\n\
+☃534534 52345 423542354235 2435 4235 4235 4524353245234 52435 4235 4235 54423532452345 52345 4235 452345☃\n\
 Do tych pól malowanych zbożem rozmaitem,\n\
 Wyzłacanych pszenicą, posrebrzanych żytem;\n\
 Gdzie bursztynowy świerzop, gryka jak śnieg biała,\n\
@@ -204,15 +201,15 @@ GameState = {
 				var strName = viruses[virus].name; //'Sasser.131'
 				var strDirection = 'front';
 				var strCooldown = '4s';
-				var strPercent = 34;
+				var strPercent = 50;	
 
 				var newButton = '<a href="#" data-virus-id="' + virus + '" class="button blue">' +
-					'<div class="cldwrapper cooldown" style="background: -moz-linear-gradient(left, rgba(255,0,0,0) ' + strPercent + '%, rgba(255,0,0,0.5)' + (100 - strPercent) + '%, rgba(255,0,0,0.7) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, right top, color-stop(' + strPercent + '%,rgba(255,0,0,0)), color-stop(' + (100 - strPercent) + '%,rgba(255,0,0,0.5)), color-stop(100%,rgba(255,0,0,0.7))); /* Chrome,Safari4+ */">' + 
+					'<div class="cldwrapper cooldown" style="background: -moz-linear-gradient(left, rgba(255,0,0,0) ' + strPercent + '%, rgba(255,0,0,0.5)' + (strPercent + 2) + '%, rgba(255,0,0,0.7) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, right top, color-stop(' + strPercent + '%,rgba(255,0,0,0)), color-stop(' + (strPercent + 2) + '%,rgba(255,0,0,0.5)), color-stop(100%,rgba(255,0,0,0.7))); /* Chrome,Safari4+ */">' + 
 					'<table><tr><td class="bttopleft">' + strType + 
 					'</td><td class="bttopright">' + strProbability + '</td></tr>' +
 					'<tr><td colspan=2 class="btmid">' + strName + '</td></tr>' +
 					'<tr><td class="bttopleft">' + strDirection + '</td>' +
-					'<td class="btbottomright">' + strCooldown + '</td></tr></table><div class="overlay"></div></div></a>';
+					'<td class="btbottomright">' + strCooldown + '</td></tr></table></div></a>';
 
 				$('#buttons').append(newButton);
 				viruses[virus].cooldownLeft = 0;
@@ -290,7 +287,7 @@ GameState = {
 				if(canAppend) {
 					$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
 					newline.html('');
-					$('.line').last().animate({top: 0}, 10000, 'linear');
+					$('.line').last().animate({top: 0}, 10000000, 'linear');
 					waitingForSpace = false;
 				}
 			}
