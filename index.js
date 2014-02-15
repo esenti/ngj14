@@ -2,6 +2,8 @@
 var levelTextIt = 0;
 var levelText = "Litwo! Ojczyzno moja! ty jesteś jak zdrowie.\n\
 Ile cię trzeba cenić, ten tylko się dowie,\n\
+1237           \n\
+???             \n\
 Kto cię stracił. Dziś piękność twą w całej ozdobie\n\
 Widzę i opisuję, bo tęsknię po tobie.\n\
 \n\
@@ -17,6 +19,7 @@ Tak nas powrócisz cudem na Ojczyzny łono.\n\
 Tymczasem przenoś moję duszę utęsknioną\n\
 Do tych pagórków leśnych, do tych łąk zielonych,\n\
 Szeroko nad błękitnym Niemnem rozciągnionych;\n\
+534534 52345 423542354235 2435 4235 4235 4524353245234 52435 4235 4235 54423532452345 52345 4235 452345\n\
 Do tych pól malowanych zbożem rozmaitem,\n\
 Wyzłacanych pszenicą, posrebrzanych żytem;\n\
 Gdzie bursztynowy świerzop, gryka jak śnieg biała,\n\
@@ -204,13 +207,15 @@ GameState = {
 			toLetter = 0.1;
 
 			var newline = $('.newline')
-		var nextLetter = '';
+			var nextLetter = '';
 			if(!waitingForSpace) {
-			nextLetter = getNextLetter();
-			newline.html(newline.html() + '<span class="letter">' + nextLetter + '</span>')
+				nextLetter = getNextLetter();
+				if (nextLetter != '\n') {
+					newline.html(newline.html() + '<span class="letter">' + nextLetter + '</span>');
+				}
 			}
 
-		if((newline.children().length > 5 && nextLetter == '\n') || waitingForSpace) {
+			if((newline.children().length > 5 && nextLetter == '\n') || waitingForSpace) {
 				var canAppend = true;
 
 				$('.line').each(function() {
@@ -269,9 +274,6 @@ $(function() {
 function getNextLetter() {
 	//return String.fromCharCode(Math.random() * 90 + 32);
 	var letter = levelText[levelTextIt++];
-	if (letter === '\n') {
-		levelTextIt++;
-	}
 	return letter;
 }
 
