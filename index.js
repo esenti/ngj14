@@ -13,7 +13,10 @@ function update(delta) {
 	for(virus in viruses) {
 		if(viruses.hasOwnProperty(virus)) {
 			viruses[virus].cooldownLeft -= delta;
-			$('div[data-virus-id=' + virus + ']').find('.overlay').text(viruses[virus].cooldownLeft > 0 ? Math.round(viruses[virus].cooldownLeft) : '');
+			$('div[data-virus-id=' + virus + ']').find('.overlay').text(viruses[virus].cooldownLeft > 0 ? Math.ceil(viruses[virus].cooldownLeft) : '');
+			if(viruses[virus].cooldownLeft <= 0) {
+				$('div[data-virus-id=' + virus + ']').removeClass('cooling-down');
+			}
 		}
 	}
 
@@ -22,7 +25,7 @@ function update(delta) {
 
 		var newline = $('.newline')
 		if(!waitingForSpace) {
-			newline.html(newline.html() + '<span class="letter">' + String.fromCharCode(Math.random() * 90 + 32) + '</span>')
+			newline.html(newline.html() + '<span class="letter">' + String.fromCharCode(Math.random() * 26 + 65) + '</span>')
 			// newline.html(newline.html() + '<span class="letter">' + (Math.random() < 0.9 ? 'C' : '?') + '</span>')
 		}
 
@@ -66,11 +69,11 @@ $(function() {
 	viruses.c = {
 		letter: 'C',
 		cooldown: 10,
-		cooldownLeft: 0
 	};
 
 	viruses.d = {
-		letter: 'D'
+		letter: 'D',
+		cooldown: 5,
 	};
 
 	for(virus in viruses) {
