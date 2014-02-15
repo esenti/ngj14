@@ -156,6 +156,24 @@ MenuState = {
 	}
 }
 
+AlbumState = {
+	enter: function() {
+		$('body').append('<div>This is album!</div>');
+
+		$('div').click(function() {
+			setState(GameState);
+		})
+	},
+
+	exit: function() {
+		$('body').html('');
+	},
+
+	update: function() {
+		window.requestAnimationFrame(frame);
+	}
+}
+
 GameState = {
 
 	enter: function() {
@@ -183,6 +201,8 @@ GameState = {
 
 			launchVirus(virus);
 		})
+
+		this.life = 10;
 	},
 
 	exit: function() {
@@ -190,6 +210,8 @@ GameState = {
 	},
 
 	update: function(delta) {
+
+		var self = this;
 
 		toLetter -= delta;
 
@@ -235,6 +257,7 @@ GameState = {
 
 			$('.line').each(function() {
 				if($(this).position().top <= 0) {
+					self.life -= $(this).find('.letter:not(.removed)').length;
 					$(this).remove();
 				}
 			});
@@ -244,6 +267,9 @@ GameState = {
 			$(this).offset({top: $(this).offset().top - 10 * delta});
 		});
 
+		if(this.life <= 0) {
+			setState(MenuState);
+		}
 
 		window.requestAnimationFrame(frame);
 	}
