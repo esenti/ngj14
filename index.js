@@ -136,7 +136,7 @@ Niestare były rączki, co je tak rzuciły.";
 var isInSnowmanState = false;
 
 var gameSpeed = 0.01;
-var gameTime = 30000;
+var gameTime = 50000;
 
 var startLife = 100;
 
