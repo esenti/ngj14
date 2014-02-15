@@ -67,21 +67,36 @@ $(function() {
 	viruses = {}
 
 	viruses.a = {
-		name: 'Letters',
-		removeAnimation: 'flipOutY',
+		name: 'A-Z + 0-9',
+		removeAnimation: 'rotateOut',
 		letter: true,
+		numbers: true,
 		cooldown: 5,
 	};
 
 	viruses.b = {
-		name: 'Non letters',
+		name: 'NOT A-Z',
 		removeAnimation: 'fadeOutDown',
 		nonLetter: true,
-		cooldown: 15,
+		cooldown: 15
 	};
 
 	viruses.c = {
-		name: 'Nothing'
+		name: 'NOT A-Z + 0-9',
+		nonLetter: true,
+		numbers: true,
+		removeAnimation: 'hinge'
+	};
+
+	viruses.d = {
+		name: '0-9',
+		numbers: true,
+		removeAnimation: 'rollOut'
+	};
+
+	viruses.e = {
+		name: 'Nothing',
+		removeAnimation: 'flipOutY'
 	};
 
 	for(virus in viruses) {
@@ -104,20 +119,6 @@ $(function() {
 		$(this).addClass('cooling-down');
 
 		launchVirus(virus);
-
-		$('.line').each(function(i, e) {
-			var keep = false;
-
-			$(this).find('.letter').each(function() {
-				if(!$(this).hasClass('removed')) {
-					keep = true;
-				}
-			});
-
-			if(!keep) {
-				$(this).remove();
-			}
-		});
 	})
 
 	now = then = Date.now();
@@ -139,11 +140,29 @@ function forEveryLetter(callback) {
 function removeWithAnimation(animation) {
 	$el.animateCSS(animation, 0, function(a) {
 		$(this).addClass("removed");
+		
+		$('.line').each(function(i, e) {
+			var keep = false;
+
+			$(this).find('.letter').each(function() {
+				if(!$(this).hasClass('removed')) {
+					keep = true;
+				}
+			});
+
+			if(!keep) {
+				$(this).remove();
+			}
+		});
 	});
 }
 
+function isNumber($el, text) {
+	return !isNaN(text);
+}
+
 function isLetter($el, text) {
-	return text.toUpperCase() !== text.toLowerCase();
+	return !isNumber() && text.toUpperCase() !== text.toLowerCase();
 }
 
 
