@@ -47,9 +47,9 @@ AlbumState = {
 
 		$('#details').on('click', '.start', function() {
 
-			if((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount)) {
-				return;
-			}
+			// if((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount)) {
+			// 	return;
+			// }
 
 			var takenViruses = [];
 
