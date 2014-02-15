@@ -195,7 +195,23 @@ GameState = {
 
 		for(virus in viruses) {
 			if(viruses.hasOwnProperty(virus)) {
-				$('#buttons').append('<div class="button" data-virus-id="' + virus + '">' + viruses[virus].name + '<div class="overlay"></div></div>');
+
+				var strType = 'A-Z';
+				var strProbability = '3%';
+				var strName = viruses[virus].name; //'Sasser.131'
+				var strDirection = 'front';
+				var strCooldown = '4s';
+				var strPercent = 34;
+
+				var newButton = '<a href="#" data-virus-id="' + virus + '" class="button blue">' +
+					'<div class="cldwrapper cooldown" style="background: -moz-linear-gradient(left, rgba(255,0,0,0) ' + strPercent + '%, rgba(255,0,0,0.5)' + (100 - strPercent) + '%, rgba(255,0,0,0.7) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, right top, color-stop(' + strPercent + '%,rgba(255,0,0,0)), color-stop(' + (100 - strPercent) + '%,rgba(255,0,0,0.5)), color-stop(100%,rgba(255,0,0,0.7))); /* Chrome,Safari4+ */">' + 
+					'<table><tr><td class="bttopleft">' + strType + 
+					'</td><td class="bttopright">' + strProbability + '</td></tr>' +
+					'<tr><td colspan=2 class="btmid">' + strName + '</td></tr>' +
+					'<tr><td class="bttopleft">' + strDirection + '</td>' +
+					'<td class="btbottomright">' + strCooldown + '</td></tr></table><div class="overlay"></div></div></a>';
+
+				$('#buttons').append(newButton);
 			}
 		}
 
@@ -205,7 +221,7 @@ GameState = {
 
 			console.log(virus)
 
-			if(virus.cooldownLeft > 0) {
+			if (virus.cooldownLeft > 0) {
 				return;
 			}
 
