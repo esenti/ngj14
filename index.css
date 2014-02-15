@@ -18,6 +18,10 @@ body {
 
 }
 
+table {
+	pointer-events: none;
+}
+
 .newline {
 	/*background: green;*/
 	height: 20px;
