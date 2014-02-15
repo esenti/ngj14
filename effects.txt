@@ -1,0 +1,4 @@
+TextIn:
+flipInX, flipInY, fadeInUpBig, fadeInRightBig, bounceInUp, rotateIn
+TextOut:
+flipOutY, fadeOutDown, fadeOutDownBig, bounceOut, rotateOut, rotateOutDownLeft, rotateOutDownRight, hinge(!), rollOut
