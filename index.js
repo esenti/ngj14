@@ -15,34 +15,36 @@ function update(delta) {
 
 		var newline = $('.newline')
 		if(!waitingForSpace) {
-			newline.html(newline.html() + '<span class="letter">' + String.fromCharCode(Math.random() * 65 + 32) + '</span>')
+			newline.html(newline.html() + '<span class="letter">' + String.fromCharCode(Math.random() * 90 + 32) + '</span>')
+			// newline.html(newline.html() + '<span class="letter">' + (Math.random() < 0.9 ? 'C' : '?') + '</span>')
 		}
 
 		if((newline.children().length > 5 && Math.random() > 0.9) || waitingForSpace) {
 			var canAppend = true;
 
-			$('.line').each(function(i, e) {
-				if($(this).position().top >= 518) {
+			$('.line').each(function() {
+
+				if($(this).position().top >= (600 - 2 * $(this).height())) {
 					canAppend = false;
 					waitingForSpace = true;
 				}
 			});
 
 			if(canAppend) {
-				$('#text').append('<div class="line" style="top: 560px">' + newline.html() + '<div>');
+				$('#text').append('<div class="line" style="top: 580px">' + newline.html() + '<div>');
 				newline.html('');
 				waitingForSpace = false;
 			}
 		}
 
-		$('.line').each(function(i, e) {
+		$('.line').each(function() {
 			if($(this).position().top <= 0) {
 				$(this).remove();
 			}
 		});
 	}
 
-	$('.line').each(function(i, e) {
+	$('.line').each(function() {
 		$(this).offset({top: $(this).offset().top - 10 * delta});
 	});
 
@@ -51,6 +53,28 @@ function update(delta) {
 }
 
 $(function() {
+	$('.button').click(function() {
+		$('.line .letter').each(function(i, e) {
+			if($(this).text() === 'C') {
+				$(this).addClass('removed');
+			}
+		});
+
+		$('.line').each(function(i, e) {
+			var keep = false;
+
+			$(this).find('.letter').each(function() {
+				if(!$(this).hasClass('removed')) {
+					keep = true;
+				}
+			});
+
+			if(!keep) {
+				$(this).remove();
+			}
+		});
+	})
+
 	now = then = Date.now();
 
 	toLetter = 0;

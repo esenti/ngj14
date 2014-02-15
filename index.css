@@ -11,6 +11,11 @@ body {
 	height: 120px;
 	background: red;
 	display: inline-block;
+	cursor: pointer;
+}
+
+.button:HOVER {
+	background: #ff4444;
 }
 
 #text {
@@ -24,14 +29,19 @@ body {
 
 .newline {
 	/*background: green;*/
-	height: 40px;
+	height: 20px;
 	width: 1200px;
+	border-top: 1px solid green;
 }
 
 .line {
 	/*background: blue;*/
-	height: 40px;
+	height: 20px;
 	width: 1200px;
 	position: absolute;
 	white-space: pre-wrap;
+}
+
+.removed {
+	color: #666666;
 }
