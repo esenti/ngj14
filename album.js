@@ -15,7 +15,7 @@ AlbumState = {
 				var strType = viruses[virus].typeString;
 				var strProbability = viruses[virus].probability ? viruses[virus].probability + '%' : '';
 				var strName = viruses[virus].name;
-				var strDirection = viruses[virus].removeFront ? (viruses[virus].removeBack ? "both" : "front") : "back";
+				var strDirection = viruses[virus].removeFront ? (viruses[virus].removeBack ? "both" : "front") : (viruses[virus].removeBack ? "back" : "random");
 				var strCooldown = viruses[virus].cooldown > 9999 ? '&infin;' : viruses[virus].cooldown + 's';
 
 				var newButton = '<a href="#" data-virus-id="' + virus + '" class="button blue ' + (viruses[virus].taken ? 'taken' : '') + '">' +

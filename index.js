@@ -175,6 +175,36 @@ viruses.fuck = {
 	probability: 30,
 };
 
+viruses.shit = {
+	name: generateVirusName(),
+	typeString: 'AEIOU',
+	removeAnimation: 'flipOutY',
+	letter: 'vowel',
+	cooldown: 5,
+	nonLetter: true,
+	removeFront: 20
+};
+
+viruses.dick = {
+	name: generateVirusName(),
+	typeString: 'BFG9000',
+	removeAnimation: 'flipOutY',
+	letter: 'consonant',
+	cooldown: 5,
+	nonLetter: true,
+	removeFront: 20
+};
+
+viruses.cunt = {
+	name: generateVirusName(),
+	typeString: 'Ass',
+	removeAnimation: 'flipOutY',
+	letter: 'consonant',
+	cooldown: 5,
+	nonLetter: true,
+	removeFront: 20,
+	direction: 'mutherfucker'
+};
 
 function frame() {
 	now = Date.now();
