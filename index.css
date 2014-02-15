@@ -3,7 +3,7 @@
 
 body {
 	font-family: 'Press Start 2P';
-	background: black;
+	background: #333;
 	color: green;
 	background-image: url(noise.png);
 }
