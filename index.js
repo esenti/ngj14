@@ -23,7 +23,7 @@ Evertything in you, your ☃face☃, your hair,\n\
 even your ☃sneakers☃ painted in flowers.\n\
 I can only hope, you feel the same.\n\
 If so, maybe i could take you for the newest\n\
-☃Pixar☃ movie☃\n\
+☃Pixar movie☃\n\
 \n\
 Trully yours,\n\
 ☃Bob☃";
@@ -392,7 +392,7 @@ function removeWithAnimation($el, animation) {
 			var keep = false;
 
 			$(this).find('.letter').each(function() {
-				if(!$(this).hasClass('removed')) {
+				if($(this).hasClass('alive')) {
 					keep = true;
 				}
 			});
