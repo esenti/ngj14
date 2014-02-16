@@ -19,6 +19,9 @@ AlbumState = {
 
 		$('#ascreen').html("<p style='margin: 20px 15px; line-height: 22px;'>Select up to five viruses.</p>");
 
+		if(!((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount))) {
+			$('.start').addClass('orange');
+		}
 
 		$('#album .button').click(function() {
 
