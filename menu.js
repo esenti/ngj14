@@ -22,6 +22,10 @@ MenuState = {
 			cablecurva = 1 - cablecurva;
 			setState(MenuState);
 		});
+
+		var music = new Audio('music.mp3');
+		music.volume = 0.25;
+		music.play();
 	},
 
 	exit: function() {

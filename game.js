@@ -67,8 +67,6 @@ GameState = {
 				return;
 			}
 
-
-
 			var removedCounter = launchVirus(virus) + 1;
 
 			virus.cooldown += Math.ceil(removedCounter / 10);
