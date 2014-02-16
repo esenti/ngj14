@@ -38,6 +38,42 @@ GameState = {
 		this.life = startLife;
 		this.outOfLetters = false;
 		this.letterIterator = getLetterIterator(this.level);
+
+
+		if (isMulti) {
+			$(document).keypress( function(e) {
+				var newline = $('.newline');
+				if (e.charCode >= 32 && e.charCode <= 122) {
+					var nextLetter = String.fromCharCode(e.charCode);
+					newline.html(newline.html() + '<span class="letter '+ ((nextLetter != ' ') ? 'alive' : '') + ' ' + (isInSnowmanState ? 'hot' : '') + '">' + nextLetter + '</span>');
+				}
+
+				if (newline.children().length > 30) {
+					nextLetter = '\n';
+				}
+
+
+				if((newline.children().length > 5 && nextLetter == '\n') || waitingForSpace || nextLetter == undefined) {
+					var canAppend = true;
+
+					$('.line').each(function() {
+
+						if($(this).position().top >= ($('#text').height() - 2 * $(this).height())) {
+							canAppend = false;
+							waitingForSpace = true;
+						}
+					});
+
+					if(canAppend) {
+						$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
+						newline.html('');
+						$('.line').last().animate({top: 0}, gameTime, 'linear');
+						waitingForSpace = false;
+					}
+				}
+			});
+		}
+
 	},
 
 	exit: function() {
@@ -69,10 +105,10 @@ GameState = {
 			}
 		}
 
-		if(toLetter <= 0) {
+		if(!isMulti && toLetter <= 0) {
 			toLetter = gameSpeed;
 
-			var newline = $('.newline')
+			var newline = $('.newline');
 			var nextLetter = '';
 			if(!waitingForSpace) {
 				nextLetter = self.letterIterator();
@@ -103,17 +139,17 @@ GameState = {
 					waitingForSpace = false;
 				}
 			}
-
-			$('.line').each(function() {
-				if($(this).position().top <= 0) {
-					wwords = $(this).find('.alive:not(.removed)');
-					wwordsHot = $(this).find('.alive.hot:not(.removed)');
-					self.life -= wwords.length;
-					self.life -= wwordsHot.length * 10;
-					$(this).remove();
-				}
-			});
 		}
+
+		$('.line').each(function() {
+			if($(this).position().top <= 0) {
+				wwords = $(this).find('.alive:not(.removed)');
+				wwordsHot = $(this).find('.alive.hot:not(.removed)');
+				self.life -= wwords.length;
+				self.life -= wwordsHot.length * 10;
+				$(this).remove();
+			}
+		});
 
 		$('#life').text(this.life + '❤');
 
