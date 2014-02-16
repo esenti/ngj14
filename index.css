@@ -1,11 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=VT323);
 @import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+@import url(http://fonts.googleapis.com/css?family=Faster+One);
 
 body {
 	font-family: 'Press Start 2P';
 	background: #333;
 	color: green;
 	background-image: url(binding_dark.png);
+
 }
 
 #text {
@@ -87,17 +89,18 @@ table {
 }
 
 #album {
-	width: 900px;
+	width: 545px;
 	float: left;
 }
 
 #album .button {
-	margin: 30px;
+	margin: 20px 0 19px 30px;
 }
 
 #details {
-	width: 300px;
+	width: 452px;
 	float: left;
+	margin-top: 10px;
 }
 
 .take , .untake {
@@ -123,7 +126,7 @@ table {
     text-shadow: 0px 0px 7px rgba(0, 255, 0, 0.25);
 	padding-bottom: 10px;
 	padding-top: 10px;
-	width: 290px;
+	width: 425px;
 	height: 400px;
 	border-radius: 10px 10px 10px 10px;
 }
@@ -132,7 +135,7 @@ table {
 	float: left;
 	z-index: 1;
     border: 1px solid rgba(0,0,0,0.5);
-	width: 290px;
+	width: 425px;
 	height: 420px;
 	margin: -11px 0 11px 0;
     border-radius: 10px 10px 10px 10px;
@@ -169,6 +172,95 @@ table {
 	background: green;
 	color: black;
 	z-index: 1000;
+<<<<<<< .mine
+}
+
+#awrapper {
+	width: 1000px;
+	height: 700px;
+    border: 1px solid #FFF;
+	margin-bottom:200px;
+	margin:0 auto;	
+	background-color:#000;
+	-webkit-border-radius:25px;
+	-moz-border-radius:25px;
+	border-radius:25px;
+    box-shadow:0px 0px 0px 5px #666, 34px 34px 4px 0px rgba(5, 5, 5, 0.75);
+}
+
+.wcklogo {
+	color: #eee;
+	display: block;
+	text-align: right;
+	margin: 0 24px 20px 0;
+	font-family: "Faster One";
+	font-size: 46px;
+}
+
+.cables {
+position: absolute;
+top: -600px;
+left: 70px;
+float: left;
+z-index: -5;
+}
+
+.cable {
+width: 800px;
+height: 800px;
+position: absolute;
+-webkit-border-radius:33px;
+-moz-border-radius:33px;
+border-radius:33px;
+-moz-box-shadow: 0px 0px 7px 7px #ff4e47;
+-webkit-box-shadow: 0px 0px 7px 7px #ff4e47;
+box-shadow: 0px 0px 7px 7px #ff4e47;
+}
+
+.cable2 {
+width: 830px;
+height: 800px;
+position: absolute;
+top: 17px;
+left: -17px;
+-webkit-border-radius:45px;
+-moz-border-radius:45px;
+border-radius:45px;
+-moz-box-shadow: inset 0px 0px 7px 7px #ff4e47;
+-webkit-box-shadow: inset 0px 0px 7px 7px #ff4e47;
+box-shadow: inset 0px 0px 7px 7px #ff4e47;
+}
+
+.cable3 {
+top: 20px;
+left: -20px;
+-moz-box-shadow: 0px 0px 7px 7px #007e47;
+-webkit-box-shadow: 0px 0px 7px 7px #007e47;
+box-shadow: 0px 0px 7px 7px #007e47;
+}
+
+.cable4 {
+top: 37px;
+left: -37px;
+-moz-box-shadow: inset 0px 0px 7px 7px #007e47;
+-webkit-box-shadow: inset 0px 0px 7px 7px #007e47;
+box-shadow: inset 0px 0px 7px 7px #007e47;
+}
+
+.cable5 {
+top: 40px;
+left: -40px;
+-moz-box-shadow: 0px 0px 7px 7px #002ea7;
+-webkit-box-shadow: 0px 0px 7px 7px #002ea7;
+box-shadow: 0px 0px 7px 7px #002ea7;
+}
+
+.cable6 {
+top: 57px;
+left: -57px;
+-moz-box-shadow: inset 0px 0px 7px 7px #002ea7;
+-webkit-box-shadow: inset 0px 0px 7px 7px #002ea7;
+box-shadow: inset 0px 0px 7px 7px #002ea7;
 }
 
 #time {
