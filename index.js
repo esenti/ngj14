@@ -201,8 +201,8 @@ for(var i = 0; i < 8; i++) {
 	} else {
 		viruses[i].probability = Math.round(Math.random() * 90 + 10);
 	}
-	
-	
+
+
 }
 
 
@@ -451,7 +451,7 @@ function makeButton(virus, id, giraffe) {
 	var strDirection = virus.removeFront ? (virus.removeBack ? (virus.removeFront + " front, " + virus.removeBack + " back") : (virus.removeFront + " front")) : (virus.removeBack ? (virus.removeBack + " back") : "");
 	var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
 
-	var newButton = '<a href="#" data-virus-id="' + id + '" class="button ' + (virus.taken && giraffe ? 'green' : 'blue') + '">' +
+	var newButton = '<a data-virus-id="' + id + '" class="button ' + (virus.taken && giraffe ? 'green' : 'blue') + '">' +
 		'<div class="cldwrapper">' +
 		'<table><tr><td class="bttopleft">' + strType +
 		'</td><td class="bttopright">' + strProbability + '</td></tr>' +
