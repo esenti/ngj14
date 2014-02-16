@@ -1,5 +1,3 @@
-var isMulti = document.URL.indexOf('multi') != -1;
-
 var levelText = [];
 
 levelText[0] = "Dear Eric,\n\
@@ -201,8 +199,8 @@ for(var i = 0; i < 8; i++) {
 	} else {
 		viruses[i].probability = Math.round(Math.random() * 90 + 10);
 	}
-	
-	
+
+
 }
 
 
