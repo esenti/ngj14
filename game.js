@@ -3,14 +3,22 @@ GameState = {
 	enter: function(viruses, level, multiplayer) {
 
 		this.viruses = viruses;
+		this.multiplayer = multiplayer;
 
 		if(multiplayer == 'server') {
-			var socket = io.connect('http://localhost');
-			socket.on('hello', function (data) {
+			this.socket = io.connect('http://localhost');
+			this.socket.emit('server-hello');
+			this.socket.on('hello', function (data) {
 				console.log(data.code);
 			});
 
 			this.viruses = [];
+		} else if(multiplayer == 'client') {
+			this.socket = io.connect('http://localhost');
+			this.socket.emit('client-hello', { code: 'dupa1' });
+			this.socket.on('hello', function (data) {
+
+			});
 		}
 
 		console.log('Level ' + level + ', bitches!')
@@ -52,11 +60,14 @@ GameState = {
 		this.letterIterator = getLetterIterator(this.level);
 
 
-		if (isMulti) {
+		if(multiplayer == 'server' || multiplayer == 'local') {
 			$(document).keypress( function(e) {
 				var newline = $('.newline');
 				if (e.charCode >= 32 && e.charCode <= 122) {
 					var nextLetter = String.fromCharCode(e.charCode);
+					if(self.socket) {
+						self.socket.emit('key', {key: nextLetter});
+					}
 					newline.html(newline.html() + '<span class="letter '+ ((nextLetter != ' ') ? 'alive' : '') + ' ' + (isInSnowmanState ? 'hot' : '') + '">' + nextLetter + '</span>');
 				}
 
@@ -77,6 +88,9 @@ GameState = {
 					});
 
 					if(canAppend) {
+						if(self.socket) {
+							self.socket.emit('action', {action: 'append'});
+						}
 						$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
 						newline.html('');
 						$('.line').last().animate({top: 0}, gameTime, 'linear');
@@ -117,7 +131,7 @@ GameState = {
 			}
 		}
 
-		if(!isMulti && toLetter <= 0) {
+		if(self.multiplayer !== 'server' && self.multiplayer !== 'local' && self.multiplayer !== 'client' && toLetter <= 0) {
 			toLetter = gameSpeed;
 
 			var newline = $('.newline');
@@ -125,7 +139,7 @@ GameState = {
 			if(!waitingForSpace) {
 				nextLetter = self.letterIterator();
 				if(nextLetter == undefined) {
-					this.outOfLetters = true;
+					self.outOfLetters = true;
 				}
 
 				if (nextLetter != '\n' && nextLetter != undefined) {

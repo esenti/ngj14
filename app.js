@@ -4,7 +4,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
-var codes = []
+var codes = {}
 
 server.listen(8080);
 
@@ -16,9 +16,23 @@ app.use("/", express.static(__dirname));
 
 io.sockets.on('connection', function (socket) {
   var code = 'dupa1';
-  codes.push(code);
-  socket.emit('hello', { code: code });
-  socket.on('my other event', function (data) {
-    console.log(data);
+  codes[code] = socket;
+
+  socket.on('server-hello', function() {
+    socket.emit('hello', { code: code });
   });
+
+  socket.on('key', function (data) {
+    console.log(data.key);
+  });
+
+  socket.on('action', function (data) {
+    console.log(data.action);
+  });
+
+  socket.on('cient-hello', function (data) {
+    console.log(codes[data.code]);
+  });
+
+
 });

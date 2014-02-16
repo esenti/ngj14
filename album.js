@@ -132,7 +132,11 @@ AlbumState = {
 					takenViruses.push(viruses[virus]);
 				}
 			}
-			setState(GameState, takenViruses, GameState.level !== undefined ? GameState.level + 1 : 0, 'server');
+
+			// var multi = isMulti ? 'client' : 'server';
+			var multi = 'local';
+
+			setState(GameState, takenViruses, GameState.level !== undefined ? GameState.level + 1 : 0, multi);
 		});
 	},
 
