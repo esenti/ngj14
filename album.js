@@ -1,6 +1,6 @@
 AlbumState = {
 	enter: function(multiplayer, code) {
-		$('body').append('<div class="cables"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="album"></div><div id="details"><div class="wcklogo">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0;">virus&nbsp;&nbsp;library</div><div id="atext"><div id="ascreen"></div></div><br><table><tr><td><a class="button glass oval orange xl">1</a><a class="button glass oval orange xl">2</a><a class="button glass oval orange xl">3</a></td><td><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><br><a class="button glass shield xl start">start</a></td></tr></table></div></div>');
+		$('body').append('<div class="cables"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="album"></div><div id="details"><div class="wcklogo">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0;">virus&nbsp;&nbsp;library</div><div id="atext"><div id="ascreen"></div></div><br><table><tr><td><a class="button glass oval orange xl page" data-page="1">1</a><a class="button glass oval orange xl page" data-page="2">2</a><a class="button glass oval orange xl page" data-page="3">3</a></td><td><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><br><a class="button glass shield xl start">start</a></td></tr></table></div></div>');
 
 		this.multiplayer = multiplayer;
 		this.code = code;
@@ -11,24 +11,34 @@ AlbumState = {
 			self.taken = 0;
 		}
 
-		self.virusesCount = 0;
-
 		for(var i = 0; i < viruses.length; i++) {
 			if(!viruses[i].taken) {
 				viruses[i] = generateVirus();
 			}
 		}
 
-		for(virus in viruses) {
-			if(viruses.hasOwnProperty(virus)) {
-				$('#album').append(makeButton(viruses[virus], virus, true));
-				self.virusesCount++;
+		for(var i = 0; i < 24; i++) {
+			$('#album').append(makeButton(viruses[i], i, true));
+			if(i >= 8) {
+				$('#album').find('a[data-virus-id=' + i + ']').hide();
 			}
 		}
 
+		$('.page').click(function() {
+			var page = parseInt($(this).data('page'));
+
+			for(var i = 0; i < 24; i++) {
+				if(i >= 8 * (page - 1) && i < 8 * page) {
+					$('#album').find('a[data-virus-id=' + i + ']').show();
+				} else {
+					$('#album').find('a[data-virus-id=' + i + ']').hide();
+				}
+			}
+		});
+
 		$('#ascreen').html("<p style='margin: 20px 15px; line-height: 22px;'>Select up to five viruses.</p>");
 
-		if(!((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount))) {
+		if(!((self.taken < 5 && viruses.length >= 5) || (viruses.length < 5 && self.taken !== viruses.length))) {
 			$('.start').addClass('orange');
 		}
 
@@ -115,7 +125,7 @@ AlbumState = {
 				$('.takeuntake').text('untake');
 				self.taken += 1;
 
-				if(!((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount))) {
+				if(!((self.taken < 5 && viruses.length >= 5) || (viruses.length < 5 && self.taken !== viruses.length))) {
 					$('.start').addClass('orange');
 				}
 			}
@@ -134,7 +144,7 @@ AlbumState = {
 
 		$('#details').on('click', '.start', function() {
 
-			// if((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount)) {
+			// if((self.taken < 5 && viruses.length >= 5) || (viruses.length < 5 && self.taken !== viruses.length)) {
 				// return;
 			// }
 
