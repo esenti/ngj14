@@ -164,7 +164,7 @@ var viruses = {}
 for(var i = 0; i < 9; i++) {
 	viruses[i] = {
 		name: generateVirusName(),
-		removeAnimation: ['rotateOut', 'fadeOutDown', 'rollOut', 'flipOutY'][Math.floor(Math.random() * 4)],
+		removeAnimation: ['flipOutY', 'fadeOutDown', 'fadeOutDownBig', 'bounceOut', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'hinge', 'rollOut'][Math.floor(Math.random() * 9)],
 		typeString: ''
 	}
 
@@ -172,31 +172,31 @@ for(var i = 0; i < 9; i++) {
 	if(r <= 0.2) {
 		viruses[i].typeString += 'AEIOU';
 		viruses[i].letter = 'vowel';
-	} else if(r <= 0.4) {
+	} else if(r <= 0.5) {
 		viruses[i].typeString += 'BCDFG';
 		viruses[i].letter = 'consonant';
 	}
 
-	if(r >= 0.4 && r <= 0.7) {
+	if(r >= 0.5 && r <= 0.7) {
 		viruses[i].nonLetter = true;
 		viruses[i].typeString += '?.!-';
 	}
 
 	if(r >= 0.7) {
 		viruses[i].numbers = true;
-		viruses[i].typeString += '0-9';
+		viruses[i].typeString += '12345';
 	}
 
 	viruses[i].cooldown = Math.round(Math.random() * 16 + 4);
 
-	if(Math.random() < 0.5) {
+	if(Math.random() < 0.3) {
 		viruses[i].removeFront = Math.round(Math.random() * 10 + 5);
 	}
-	if(Math.random() < 0.5) {
+	if(Math.random() < 0.3) {
 		viruses[i].removeBack = Math.round(Math.random() * 10 + 5);
 	}
 	if(Math.random() < 0.5) {
-		viruses[i].probability = Math.round(Math.random() * 50 + 20);
+		viruses[i].probability = Math.round(Math.random() * 90 + 10);
 	}
 }
 
@@ -436,9 +436,14 @@ function isVowel($el, text) {
 
 function makeButton(virus, id, giraffe) {
 	var strType = virus.typeString;
-	var strProbability = (virus.removeFront ? virus.removeFront : '-') + '/' + (virus.removeBack ? virus.removeBack : '-') + ' ' + (virus.probability ? virus.probability + '%' : '');
+	// var propabilityPrefix = (virus.removeFront ? virus.removeFront : '-') + '/' + (virus.removeBack ? virus.removeBack : '-');
+	// if (propabilityPrefix == '-/-') {
+	// 	propabilityPrefix = '';
+	// }
+	var strProbability = (virus.probability ? virus.probability + '%' : '100%');
 	var strName = virus.name;
-	var strDirection = virus.removeFront ? (virus.removeBack ? "both" : "front") : (virus.removeBack ? "back" : "random");
+	//var strDirection = virus.removeFront ? (virus.removeBack ? "both" : "front") : (virus.removeBack ? "back" : "random");
+	var strDirection = virus.removeFront ? (virus.removeBack ? (virus.removeFront + " front, " + virus.removeBack + " back") : (virus.removeFront + " front")) : (virus.removeBack ? (virus.removeBack + " back") : "");
 	var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
 
 	var newButton = '<a href="#" data-virus-id="' + id + '" class="button ' + (virus.taken && giraffe ? 'green' : 'blue') + '">' +

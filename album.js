@@ -38,7 +38,7 @@ AlbumState = {
 				}
 			}
 
-			if (virus.number) {
+			if (virus.numbers) {
 				if (kills != "") {
 					kills += ", ";
 				}
@@ -54,7 +54,7 @@ AlbumState = {
 
 			virusParams += "<li><big class='invert'>" + virus.name + "</big></li>";
 
-			virusParams += "<li><em>" + virus.typeString + "</em></li>";
+			virusParams += "<li><em class='invert'>" + virus.typeString + "</em></li>";
 
 			if (virus.cooldown > 9999)
 				virusParams += "<li>Only once</li>";
@@ -67,10 +67,10 @@ AlbumState = {
 			virusParams += "<li>Kills: " + kills + "</li>";
 
 			if (virus.removeFront)
-				virusParams += "<li>Remove first " + virus.removeFront + " characters</li>";
+				virusParams += "<li>Removes first " + virus.removeFront + " characters</li>";
 
 			if (virus.removeBack)
-				virusParams += "<li>Remove last " + virus.removeBack + " characters</li>";
+				virusParams += "<li>Removes last " + virus.removeBack + " characters</li>";
 
 			virusParams += "</ul>";
 
