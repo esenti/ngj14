@@ -137,12 +137,13 @@ Niestare byly raczki, co je tak rzucily.";
 var isInSnowmanState = false;
 
 var gameSpeed = 0.01;
-var gameTime = 50000;
+var gameTime = 10000;
 
 var startLife = 100;
 
-var VirNameBase=new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "4K", "4096", "5lo", "Abraxas", "Acid", "Acme", "ABC", "AIDS", "AntiCMOS", "Bomber", "Commander", "flu", "Byte", "Bandit", "Christmas", "Commwarrior", "Conficker", "Creeper", "Eliza", "ILOVEYOU", "INIT", "Jerusalem", "worm", "Lamer", "Exterminator", "Garfield", "Michelangelo", "Navidad", "Boot", "Techno", "Whale", "Doom", "Sasser", "Storm", "Dick", "Giraffe", "Geraffe", "Longhorse", "Cock", "Cock", "Cock");
+var VirNameBase=new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "4K", "4096", "5lo", "Abraxas", "Acid", "Acme", "ABC", "AIDS", "AntiCMOS", "Bomber", "Commander", "flu", "Byte", "Bandit", "Christmas", "Commwarrior", "Conficker", "Creeper", "Eliza", "ILOVEYOU", "INIT", "Jerusalem", "worm", "Lamer", "Exterminator", "Garfield", "Michelangelo", "Navidad", "Boot", "Techno", "Whale", "Doom", "Sasser", "Storm");
 var VirNameDot=new Array(".",".",".",".",".","_",":","-","+");
+var anims=new Array("shake","swing","tada","wobble");
 
 function generateVirusName() {
 	function keep21(a,b) {

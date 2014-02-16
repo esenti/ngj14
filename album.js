@@ -1,6 +1,6 @@
 AlbumState = {
 	enter: function() {
-		$('body').append('<div class="cables"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="album"></div><div id="details"><div class="wcklogo">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0;">Virus&nbsp;&nbsp;collection</div><div id="atext"><div id="ascreen"></div></div><br><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><br><a class="button glass shield xl start">start</a></div></div>');
+		$('body').append('<div class="cables"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="album"></div><div id="details"><div class="wcklogo">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0;">virus&nbsp;&nbsp;library</div><div id="atext"><div id="ascreen"></div></div><br><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><br><a class="button glass shield xl start">start</a></div></div>');
 
 		var self = this;
 

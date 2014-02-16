@@ -157,6 +157,9 @@ GameState = {
 				self.life -= wwords.length;
 				self.life -= wwordsHot.length * 10;
 				$(this).remove();
+				var an = anims[Math.floor((Math.random()*anims.length))];
+				var el = $('#awrapper').addClass('animated '+an);
+				setTimeout(function() { el.removeClass('animated '+an); }, 1000);
 			}
 		});
 
