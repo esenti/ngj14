@@ -330,8 +330,8 @@ $(function() {
 	toLetter = 0;
 	waitingForSpace = false;
 
-	// setState(MenuState);
-	setState(AlbumState);
+	setState(MenuState);
+	// setState(AlbumState);
 
 	window.requestAnimationFrame(frame);
 });
