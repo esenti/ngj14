@@ -132,6 +132,21 @@ Na niem noty i ksiazki; wszystko porzucano\n\
 Niedbale i bezladnie; nieporzadek mily!\n\
 Niestare byly raczki, co je tak rzucily.";
 
+// the initial seed
+Math.seed = 6;
+
+// in order to work 'Math.seed' must NOT be undefined,
+// so in any case, you HAVE to provide a Math.seed
+Math.seededRandom = function(max, min) {
+	max = max || 1;
+	min = min || 0;
+
+	Math.seed = (Math.seed * 9301 + 49297) % 233280;
+	var rnd = Math.seed / 233280;
+
+	return min + rnd * (max - min);
+}
+
 var isInSnowmanState = false;
 
 var gameSpeed = 0.01;
@@ -149,14 +164,14 @@ function generateVirusName() {
 		if (b.length <= 21) { vextended++; return b; }
 		return a;
 	}
-	virus = VirNameBase[Math.floor((Math.random()*VirNameBase.length))]; var vextended = 0;
+	virus = VirNameBase[Math.floor((Math.seededRandom()*VirNameBase.length))]; var vextended = 0;
 	while (vextended ==0) {
-		if (Math.random() > 0.8) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + String.fromCharCode(65+Math.floor(Math.random()*4)) ); }
-		if (Math.random() > 0.9) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + Math.floor(Math.random()*9999) ); }
-		else if (Math.random() > 0.80) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + "19" + Math.floor(70+Math.random()*29) ); }
-		else if (Math.random() > 0.75) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + "20" + Math.floor(Math.random()*14) ); }
-		else if (Math.random() > 0.65) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + Math.floor(Math.random()*9) ); }
-		if (Math.random() > 0.8) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + VirNameBase[Math.floor((Math.random()*VirNameBase.length))] ); }
+		if (Math.seededRandom() > 0.8) { virus = keep21(virus, VirNameDot[Math.floor((Math.seededRandom()*VirNameDot.length))] + String.fromCharCode(65+Math.floor(Math.seededRandom()*4)) ); }
+		if (Math.seededRandom() > 0.9) { virus = keep21(virus, VirNameDot[Math.floor((Math.seededRandom()*VirNameDot.length))] + Math.floor(Math.seededRandom()*9999) ); }
+		else if (Math.seededRandom() > 0.80) { virus = keep21(virus, VirNameDot[Math.floor((Math.seededRandom()*VirNameDot.length))] + "19" + Math.floor(70+Math.seededRandom()*29) ); }
+		else if (Math.seededRandom() > 0.75) { virus = keep21(virus, VirNameDot[Math.floor((Math.seededRandom()*VirNameDot.length))] + "20" + Math.floor(Math.seededRandom()*14) ); }
+		else if (Math.seededRandom() > 0.65) { virus = keep21(virus, VirNameDot[Math.floor((Math.seededRandom()*VirNameDot.length))] + Math.floor(Math.seededRandom()*9) ); }
+		if (Math.seededRandom() > 0.8) { virus = keep21(virus, VirNameDot[Math.floor((Math.seededRandom()*VirNameDot.length))] + VirNameBase[Math.floor((Math.seededRandom()*VirNameBase.length))] ); }
 	}
 	return virus;
 }
@@ -170,11 +185,11 @@ for(var i = 0; i < 8; i++) {
 function generateVirus() {
 	var virus = {
 		name: generateVirusName(),
-		removeAnimation: ['flipOutY', 'fadeOutDown', 'fadeOutDownBig', 'bounceOut', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'hinge', 'rollOut'][Math.floor(Math.random() * 9)],
+		removeAnimation: ['flipOutY', 'fadeOutDown', 'fadeOutDownBig', 'bounceOut', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'hinge', 'rollOut'][Math.floor(Math.seededRandom() * 9)],
 		typeString: ''
 	}
 
-	var r = Math.random();
+	var r = Math.seededRandom();
 	if(r <= 0.2) {
 		virus.typeString += 'AEIOU';
 		virus.letter = 'vowel';
@@ -193,19 +208,19 @@ function generateVirus() {
 		virus.typeString += '12345';
 	}
 
-	virus.cooldown = Math.round(Math.random() * 15 + 1);
+	virus.cooldown = Math.round(Math.seededRandom() * 15 + 1);
 
-	if(Math.random() < 0.3) {
-		virus.removeFront = Math.round(Math.random() * 10 + 5);
+	if(Math.seededRandom() < 0.3) {
+		virus.removeFront = Math.round(Math.seededRandom() * 10 + 5);
 	}
-	if(Math.random() < 0.3) {
-		virus.removeBack = Math.round(Math.random() * 10 + 5);
+	if(Math.seededRandom() < 0.3) {
+		virus.removeBack = Math.round(Math.seededRandom() * 10 + 5);
 	}
 
 	if (virus.removeFront || virus.removeBack) {
-		virus.probability = Math.round(Math.random() * 50 + 50);
+		virus.probability = Math.round(Math.seededRandom() * 50 + 50);
 	} else {
-		virus.probability = Math.round(Math.random() * 90 + 10);
+		virus.probability = Math.round(Math.seededRandom() * 90 + 10);
 	}
 
 	return virus;
@@ -360,7 +375,7 @@ function launchVirus(virus) {
 
 	forEveryLetter( function($el, text) {
 
-		if (virus.probability && Math.random() * 100 > virus.probability) {
+		if (virus.probability && Math.seededRandom() * 100 > virus.probability) {
 			return;
 		}
 
@@ -372,7 +387,7 @@ function launchVirus(virus) {
 				(virus.letter == 'vowel' && isVowel($el, text)) ||
 				(virus.letter == 'consonant' && !isVowel($el, text)) ||
 				(virus.letter == true))) ||
-		    (virus.nonLetter && !isLetter($el, text)) ||
+			(virus.nonLetter && !isLetter($el, text)) ||
 			(virus.number && isNumber($el, text)) ||
 			(virus.notNumber && !isNumber($el, text))) {
 

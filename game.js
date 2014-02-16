@@ -15,6 +15,7 @@ GameState = {
 			this.socket.on('hello', function (data) {
 				console.log(data.code);
 				self.code = data.code;
+				Math.seed = self.code;
 				$('.giraffe').text('Code: ' + data.code);
 			});
 
@@ -31,7 +32,7 @@ GameState = {
 			// this.socket = io.connect('http://localhost');
 			this.socket = io.connect('http://172.17.64.229');
 			self.code = code;
-			console.log(code);
+			Math.seed = self.code;
 			this.socket.emit('client-hello', { code: self.code });
 			this.socket.on('hello', function (data) {
 
@@ -240,7 +241,7 @@ GameState = {
 				self.life -= wwords.length;
 				self.life -= wwordsHot.length * 10;
 				$(this).remove();
-				var an = anims[Math.floor((Math.random()*anims.length))];
+				var an = anims[Math.floor((Math.seededRandom()*anims.length))];
 				var el = $('#awrapper').addClass('animated '+an);
 				setTimeout(function() { el.removeClass('animated '+an); }, 1000);
 			}
