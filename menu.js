@@ -21,7 +21,7 @@ MenuState = {
 		$('.oval').click(function() {
 			cablecurva = 1 - cablecurva;
 			setState(MenuState);
-		});		
+		});
 	},
 
 	exit: function() {

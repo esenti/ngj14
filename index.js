@@ -181,13 +181,14 @@ for(var i = 0; i < 24; i++) {
 }
 
 function generateVirus() {
+	var name = generateVirusName();
+
 	var virus = {
-		name: generateVirusName(),
+		name: name,
 		removeAnimation: ['flipOutY', 'fadeOutDown', 'fadeOutDownBig', 'bounceOut', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'hinge', 'rollOut'][Math.floor(Math.seededRandom() * 9)],
-		typeString: ''
+		typeString: '',
+		sound: new Audio(name.substring(0, 4).toLowerCase() + '.mp3')
 	}
-
-
 
 	var rr = Math.seededRandom();
 	if (rr < 0.1) {
@@ -382,6 +383,8 @@ function getLetterIterator(level) {
 }
 
 function launchVirus(virus) {
+
+	virus.sound.play();
 
 	var removedCounter = 0;
 
