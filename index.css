@@ -170,3 +170,13 @@ table {
 	color: black;
 	z-index: 1000;
 }
+
+#time {
+	position: absolute;
+	right: 152px;
+	top: 217px;
+	padding: 5px;
+	background: green;
+	color: black;
+	z-index: 1000;
+}

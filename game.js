@@ -2,11 +2,13 @@ GameState = {
 
 	enter: function(viruses, level) {
 
+		startTime = Date.now();
+
 		console.log('Level ' + level + ', bitches!')
 
 		this.level = level;
 
-		$('body').append('<div id="buttons"></div><div id="life"></div><div id="text"><div id="screen1"></div></div><div class="newline"></div>');
+		$('body').append('<div id="buttons"></div><div id="life"></div><div id="time"></div><div id="text"><div id="screen1"></div></div><div class="newline"></div>');
 
 		this.viruses = viruses;
 		var self = this;
@@ -159,6 +161,11 @@ GameState = {
 		});
 
 		$('#life').text(this.life + '❤');
+
+		var timeInSec = Date.now() - startTime;
+
+		$('#time').text((timeInSec / 1000).toFixed(2) + 's');
+
 
 		if(this.life <= 0) {
 			setState(MenuState);
