@@ -1,6 +1,6 @@
 AlbumState = {
 	enter: function() {
-		$('body').append('<div id="album"></div><div id="details"><div id="atext"><div id="ascreen"></div></div><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button glass shield xl start">start</a></div>');
+		$('body').append('<div class="cables"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="album"></div><div id="details"><div class="wcklogo">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0;">Virus&nbsp;&nbsp;collection</div><div id="atext"><div id="ascreen"></div></div><br><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><br><a class="button glass shield xl start">start</a></div></div>');
 
 		var self = this;
 
@@ -27,6 +27,10 @@ AlbumState = {
 
 			var virus = viruses[$(this).data('virus-id')]
 
+			if (self.selectedVirus == virus) {
+				$(".takeuntake").trigger('click');
+			}
+
 			var virusParams = "<ul id=aul>";
 
 			var kills = "";
@@ -38,7 +42,7 @@ AlbumState = {
 				}
 			}
 
-			if (virus.number) {
+			if (virus.numbers) {
 				if (kills != "") {
 					kills += ", ";
 				}
@@ -54,7 +58,7 @@ AlbumState = {
 
 			virusParams += "<li><big class='invert'>" + virus.name + "</big></li>";
 
-			virusParams += "<li><em>" + virus.typeString + "</em></li>";
+			virusParams += "<li><em class='invert'>" + virus.typeString + "</em></li>";
 
 			if (virus.cooldown > 9999)
 				virusParams += "<li>Only once</li>";
@@ -67,10 +71,10 @@ AlbumState = {
 			virusParams += "<li>Kills: " + kills + "</li>";
 
 			if (virus.removeFront)
-				virusParams += "<li>Remove first " + virus.removeFront + " characters</li>";
+				virusParams += "<li>Removes first " + virus.removeFront + " characters</li>";
 
 			if (virus.removeBack)
-				virusParams += "<li>Remove last " + virus.removeBack + " characters</li>";
+				virusParams += "<li>Removes last " + virus.removeBack + " characters</li>";
 
 			virusParams += "</ul>";
 

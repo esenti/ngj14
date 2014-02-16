@@ -34,11 +34,13 @@ GameState = {
 			});
 		}
 
+		startTime = Date.now();
+
 		console.log('Level ' + level + ', bitches!')
 
 		this.level = level;
 
-		$('body').append('<div id="buttons"></div><div id="life"></div><div id="text"><div id="screen1"></div></div><div class="newline"></div>');
+		$('body').append('<div id="buttons"></div><div id="life"></div><div id="time"></div><div id="text"><div id="screen1"></div></div><div class="newline"></div>');
 
 
 		for(virus in self.viruses) {
@@ -49,18 +51,25 @@ GameState = {
 			}
 		}
 
-		$('.button').click(function() {
+		$('.button').click(function(e) {
 
 			var virus = self.viruses[$(this).data('virus-id')]
 
 			console.log(virus)
 
 			if (virus.cooldownLeft > 0) {
+				virus.cooldownLeft = virus.cooldown;
 				return;
 			}
 
+			virus.cooldown += 1;
 			virus.cooldownLeft = virus.cooldown;
+
+			var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
+			$(e.target).find('.cooldownStr').text(strCooldown);
+
 			$(this).addClass('cooling-down');
+
 
 			launchVirus(virus);
 
@@ -232,6 +241,11 @@ GameState = {
 		});
 
 		$('#life').text(this.life + '❤');
+
+		var timeInSec = Date.now() - startTime;
+
+		$('#time').text((timeInSec / 1000).toFixed(2) + 's');
+
 
 		if(this.life <= 0) {
 			setState(MenuState);
