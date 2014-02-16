@@ -141,9 +141,9 @@ AlbumState = {
 			var takenViruses = [];
 
 			for(virus in viruses) {
-				// if(viruses.hasOwnProperty(virus) && viruses[virus].taken) {
+				if(viruses.hasOwnProperty(virus) && viruses[virus].taken) {
 					takenViruses.push(viruses[virus]);
-				// }
+				}
 			}
 
 			// var client = document.URL.indexOf('client') != -1;
