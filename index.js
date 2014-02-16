@@ -1,5 +1,3 @@
-var isMulti = document.URL.indexOf('multi') != -1;
-
 var levelText = [];
 
 levelText[0] = "Dear Eric,\n\
