@@ -103,6 +103,10 @@ table {
 	float: left;
 }
 
+.button {
+	cursor: pointer;
+}
+
 #album .button {
 	margin: 20px 0 19px 30px;
 }
