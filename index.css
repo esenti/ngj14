@@ -145,8 +145,18 @@ table {
 
 #aul {
 	width: 200px;
+	list-style-type: none;
+	line-height: 22px;
+	margin-left: -20px;
+	font-size: 13px;
 }
 
 .button * {
 	pointer-events: none;
+}
+
+.invert {
+	background: green !important;
+	color: black !important;
+	padding: 3px !important;
 }

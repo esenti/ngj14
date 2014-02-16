@@ -17,6 +17,8 @@ AlbumState = {
 			}
 		}
 
+		$('#ascreen').html("<p style='margin: 20px 15px; line-height: 22px;'>Select up to five viruses.</p>");
+
 
 		$('.button').click(function() {
 
@@ -47,7 +49,7 @@ AlbumState = {
 				kills += "others";
 			}
 
-			virusParams += "<li><strong>" + virus.name + "</strong></li>";
+			virusParams += "<li><big class='invert'>" + virus.name + "</big></li>";
 
 			virusParams += "<li><em>" + virus.typeString + "</em></li>";
 
