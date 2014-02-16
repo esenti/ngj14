@@ -1,7 +1,7 @@
 AlbumState = {
 	enter: function(multiplayer, code) {
 		if (cablecurva) { $('body').append('<div class="cables"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div>'); }
-		$('body').append('<div id="awrapper"><div id="album"></div><div id="details"><div class="wcklogo">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0;">virus&nbsp;&nbsp;library</div><div id="atext"><div id="ascreen"></div></div><br><table><tr><td><a class="button glass oval orange xl page" data-page="1">1</a><a class="button glass oval orange xl page" data-page="2">2</a><a class="button glass oval orange xl page" data-page="3">3</a></td><td><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><br><a class="button glass shield xl start">start</a></td></tr></table></div></div>');
+		$('body').append('<div id="awrapper"><div id="album"></div><div id="details"><div class="wcklogo">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0;">virus&nbsp;&nbsp;library</div><div id="atext"><div id="ascreen"></div></div><br><table><tr><td><a class="button glass oval green xl page" data-page="1">1</a><a class="button glass oval orange xl page" data-page="2">2</a><a class="button glass oval orange xl page" data-page="3">3</a></td><td><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><br><a class="button glass shield xl start">start</a></td></tr></table></div></div>');
 
 		this.multiplayer = multiplayer;
 		this.code = code;
@@ -26,6 +26,13 @@ AlbumState = {
 		}
 
 		$('.page').click(function() {
+
+			$('a[data-page]').removeClass('green');
+			$('a[data-page]').addClass('orange');
+
+			$(this).addClass('green');
+			$(this).removeClass('orange');
+
 			var page = parseInt($(this).data('page'));
 
 			for(var i = 0; i < 24; i++) {
