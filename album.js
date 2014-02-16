@@ -132,9 +132,9 @@ AlbumState = {
 			var takenViruses = [];
 
 			for(virus in viruses) {
-				if(viruses.hasOwnProperty(virus) && viruses[virus].taken) {
+				// if(viruses.hasOwnProperty(virus) && viruses[virus].taken) {
 					takenViruses.push(viruses[virus]);
-				}
+				// }
 			}
 			setState(GameState, takenViruses, GameState.level !== undefined ? GameState.level + 1 : 0);
 		});
