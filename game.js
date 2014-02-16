@@ -1,6 +1,17 @@
 GameState = {
 
-	enter: function(viruses, level) {
+	enter: function(viruses, level, multiplayer) {
+
+		this.viruses = viruses;
+
+		if(multiplayer == 'server') {
+			var socket = io.connect('http://localhost');
+			socket.on('hello', function (data) {
+				console.log(data.code);
+			});
+
+			this.viruses = [];
+		}
 
 		console.log('Level ' + level + ', bitches!')
 
@@ -8,8 +19,8 @@ GameState = {
 
 		$('body').append('<div id="buttons"></div><div id="life"></div><div id="text"><div id="screen1"></div></div><div class="newline"></div>');
 
-		this.viruses = viruses;
 		var self = this;
+
 
 		for(virus in self.viruses) {
 			if(self.viruses.hasOwnProperty(virus)) {
@@ -34,6 +45,7 @@ GameState = {
 
 			launchVirus(virus);
 		})
+
 
 		this.life = startLife;
 		this.outOfLetters = false;
