@@ -115,7 +115,7 @@ GameState = {
 			});
 		}
 
-		$('#life').text(this.life);
+		$('#life').text(this.life + '❤');
 
 		if(this.life <= 0) {
 			setState(MenuState);
