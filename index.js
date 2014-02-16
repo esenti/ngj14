@@ -137,7 +137,7 @@ Niestare byly raczki, co je tak rzucily.";
 var isInSnowmanState = false;
 
 var gameSpeed = 0.01;
-var gameTime = 10000;
+var gameTime = 80000;
 
 var startLife = 100;
 

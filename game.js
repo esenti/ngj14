@@ -8,7 +8,7 @@ GameState = {
 
 		this.level = level;
 
-		$('body').append('<div class="cables" style="top: -200px"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="buttons"></div><div id="text"><div id="counters"><div id="life"></div><div id="time"></div></div><div id="screen1"></div></div><div class="newline"></div></div>');
+		$('body').append('<div class="cables" style="top: -200px"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="buttons"></div><div id="text"><div id="counters"><div id="life"></div><div id="time"></div></div><div id="screen1"></div></div><div class="newline"></div><div class="wcklogo" style="display: inline; margin-left: 30px">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0; display: inline;  margin-left: 130px">the&nbsp;text&nbsp;defence&nbsp;game</div></div>');
 
 		this.viruses = viruses;
 		var self = this;
