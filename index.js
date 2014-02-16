@@ -148,16 +148,18 @@ var anims=new Array("shake","swing","tada","wobble");
 function generateVirusName() {
 	function keep21(a,b) {
 		b = a+b;
-		if (b.length <= 21) { return b; }
+		if (b.length <= 21) { vextended++; return b; }
 		return a;
 	}
-	virus = VirNameBase[Math.floor((Math.random()*VirNameBase.length))];
-	if (Math.random() > 0.8) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + String.fromCharCode(65+Math.floor(Math.random()*4)) ); }
-	if (Math.random() > 0.9) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + Math.floor(Math.random()*9999) ); }
-	else if (Math.random() > 0.80) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + "19" + Math.floor(70+Math.random()*29) ); }
-	else if (Math.random() > 0.75) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + "20" + Math.floor(Math.random()*14) ); }
-	else if (Math.random() > 0.65) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + Math.floor(Math.random()*9) ); }
-	if (Math.random() > 0.8) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + VirNameBase[Math.floor((Math.random()*VirNameBase.length))] ); }
+	virus = VirNameBase[Math.floor((Math.random()*VirNameBase.length))]; var vextended = 0;
+	while (vextended ==0) {
+		if (Math.random() > 0.8) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + String.fromCharCode(65+Math.floor(Math.random()*4)) ); }
+		if (Math.random() > 0.9) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + Math.floor(Math.random()*9999) ); }
+		else if (Math.random() > 0.80) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + "19" + Math.floor(70+Math.random()*29) ); }
+		else if (Math.random() > 0.75) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + "20" + Math.floor(Math.random()*14) ); }
+		else if (Math.random() > 0.65) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + Math.floor(Math.random()*9) ); }
+		if (Math.random() > 0.8) { virus = keep21(virus, VirNameDot[Math.floor((Math.random()*VirNameDot.length))] + VirNameBase[Math.floor((Math.random()*VirNameBase.length))] ); }
+	}
 	return virus;
 }
 var viruses = {}
