@@ -23,7 +23,7 @@ GameState = {
 
 		$('.button').click(function(e) {
 
-			var virus = self.viruses[$(this).data('virus-id')]
+			var virus = self.viruses[parseInt($(this).data('virus-id'))]
 
 			console.log(virus)
 

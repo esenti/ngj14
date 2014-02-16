@@ -162,7 +162,8 @@ function generateVirusName() {
 	}
 	return virus;
 }
-var viruses = {}
+
+var viruses = []
 
 for(var i = 0; i < 8; i++) {
 	viruses[i] = {

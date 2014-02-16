@@ -25,7 +25,7 @@ AlbumState = {
 
 		$('#album .button').click(function() {
 
-			var virus = viruses[$(this).data('virus-id')]
+			var virus = viruses[parseInt($(this).data('virus-id'))]
 
 			if (self.selectedVirus == virus) {
 				$(".takeuntake").trigger('click');
