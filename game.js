@@ -66,16 +66,17 @@ GameState = {
 				return;
 			}
 
-			virus.cooldown += 1;
+
+
+			var removedCounter = launchVirus(virus);
+
+			virus.cooldown += Math.ceil(removedCounter / 10);
 			virus.cooldownLeft = virus.cooldown;
 
 			var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
 			$(e.target).find('.cooldownStr').text(strCooldown);
 
 			$(this).addClass('cooling-down');
-
-
-			launchVirus(virus);
 
 			if(self.multiplayer == 'client') {
 				self.socket.emit('virus', {code: self.code, virus: virus});

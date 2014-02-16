@@ -75,6 +75,25 @@ AlbumState = {
 				kills += "others";
 			}
 
+			if (virus.lowerCase) {
+				if (kills != "") {
+					kills += ", ";
+				}
+				kills += "lowerCase";
+			}
+
+			if (virus.upperCase) {
+				if (kills != "") {
+					kills += ", ";
+				}
+				kills += "upperCase";
+			}
+
+			if (kills == "") {
+				kills = "all";
+			}
+
+
 			virusParams += "<li><big class='invert'>" + virus.name + "</big></li>";
 
 			virusParams += "<li><em class='invert'>" + virus.typeString + "</em></li>";

@@ -383,6 +383,8 @@ function getLetterIterator(level) {
 
 function launchVirus(virus) {
 
+	var removedCounter = 0;
+
 	var removedFromFront = 0;
 	var toRemoveFromBack = [];
 
@@ -415,8 +417,10 @@ function launchVirus(virus) {
 
 			if (virus.removeBack) {
 				toRemoveFromBack.push({$el: $el, animation: virus.removeAnimation});
+				removedCounter++;
 			} else {
 				removedFromFront++;
+				removedCounter++;
 				removeWithAnimation($el, virus.removeAnimation);
 			}
 
@@ -436,6 +440,8 @@ function launchVirus(virus) {
 			removeWithAnimation(toRemoveFromBack[i].$el, toRemoveFromBack[i].animation);
 		}
 	}
+
+	return removedCounter;
 
 }
 
