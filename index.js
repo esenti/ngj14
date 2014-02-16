@@ -131,7 +131,7 @@ Niedbale i bezladnie; nieporzadek mily!\n\
 Niestare byly raczki, co je tak rzucily.";
 
 // the initial seed
-Math.seed = 6;
+Math.seed = parseInt(Math.random() * 1000);
 
 // in order to work 'Math.seed' must NOT be undefined,
 // so in any case, you HAVE to provide a Math.seed

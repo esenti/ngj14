@@ -51,7 +51,7 @@ GameState = {
 			if(self.viruses.hasOwnProperty(virus)) {
 				$('#buttons').append(makeButton(viruses[virus], virus));
 
-				self.viruses[virus].cooldownLeft = 0;
+				self.viruses[virus].cooldownLeft = self.viruses[virus].cooldown;
 			}
 		}
 
@@ -68,7 +68,7 @@ GameState = {
 
 
 
-			var removedCounter = launchVirus(virus);
+			var removedCounter = launchVirus(virus) + 1;
 
 			virus.cooldown += Math.ceil(removedCounter / 10);
 			virus.cooldownLeft = virus.cooldown;

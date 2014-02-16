@@ -38,7 +38,7 @@ AlbumState = {
 
 		$('#ascreen').html("<p style='margin: 20px 15px; line-height: 22px;'>Select up to five viruses.</p>");
 
-		if(!((self.taken < 5 && viruses.length >= 5) || (viruses.length < 5 && self.taken !== viruses.length))) {
+		if(!((self.taken < 8 && viruses.length >= 8) || (viruses.length < 8 && self.taken !== viruses.length))) {
 			$('.start').addClass('orange');
 		}
 
@@ -135,7 +135,7 @@ AlbumState = {
 		});
 
 		$('#details').on('click', '.take', function() {
-			if(self.taken < 5) {
+			if(self.taken < 8) {
 				self.selectedVirus.taken = true;
 				$('a[data-virus-id=' + self.selectedVirusId + ']').addClass('green');
 				$('a[data-virus-id=' + self.selectedVirusId + ']').removeClass('blue');
@@ -144,7 +144,7 @@ AlbumState = {
 				$('.takeuntake').text('untake');
 				self.taken += 1;
 
-				if(!((self.taken < 5 && viruses.length >= 5) || (viruses.length < 5 && self.taken !== viruses.length))) {
+				if(!((self.taken < 8 && viruses.length >= 8) || (viruses.length < 8 && self.taken !== viruses.length))) {
 					$('.start').addClass('orange');
 				}
 			}
