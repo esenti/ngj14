@@ -164,7 +164,11 @@ function generateVirusName() {
 var viruses = []
 
 for(var i = 0; i < 8; i++) {
-	viruses[i] = {
+	viruses[i] = generateVirus();
+}
+
+function generateVirus() {
+	var virus = {
 		name: generateVirusName(),
 		removeAnimation: ['flipOutY', 'fadeOutDown', 'fadeOutDownBig', 'bounceOut', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'hinge', 'rollOut'][Math.floor(Math.random() * 9)],
 		typeString: ''
@@ -172,41 +176,40 @@ for(var i = 0; i < 8; i++) {
 
 	var r = Math.random();
 	if(r <= 0.2) {
-		viruses[i].typeString += 'AEIOU';
-		viruses[i].letter = 'vowel';
+		virus.typeString += 'AEIOU';
+		virus.letter = 'vowel';
 	} else if(r <= 0.5) {
-		viruses[i].typeString += 'BCDFG';
-		viruses[i].letter = 'consonant';
+		virus.typeString += 'BCDFG';
+		virus.letter = 'consonant';
 	}
 
 	if(r >= 0.5 && r <= 0.7) {
-		viruses[i].nonLetter = true;
-		viruses[i].typeString += '?.!-';
+		virus.nonLetter = true;
+		virus.typeString += '?.!-';
 	}
 
 	if(r >= 0.7) {
-		viruses[i].numbers = true;
-		viruses[i].typeString += '12345';
+		virus.numbers = true;
+		virus.typeString += '12345';
 	}
 
-	viruses[i].cooldown = Math.round(Math.random() * 15 + 1);
+	virus.cooldown = Math.round(Math.random() * 15 + 1);
 
 	if(Math.random() < 0.3) {
-		viruses[i].removeFront = Math.round(Math.random() * 10 + 5);
+		virus.removeFront = Math.round(Math.random() * 10 + 5);
 	}
 	if(Math.random() < 0.3) {
-		viruses[i].removeBack = Math.round(Math.random() * 10 + 5);
+		virus.removeBack = Math.round(Math.random() * 10 + 5);
 	}
 
-	if (viruses[i].removeFront || viruses[i].removeBack) {
-		viruses[i].probability = Math.round(Math.random() * 50 + 50);
+	if (virus.removeFront || virus.removeBack) {
+		virus.probability = Math.round(Math.random() * 50 + 50);
 	} else {
-		viruses[i].probability = Math.round(Math.random() * 90 + 10);
+		virus.probability = Math.round(Math.random() * 90 + 10);
 	}
 
-
+	return virus;
 }
-
 
 // viruses.a = {
 // 	name: generateVirusName(),

@@ -12,6 +12,12 @@ AlbumState = {
 
 		self.virusesCount = 0;
 
+		for(var i = 0; i < viruses.length; i++) {
+			if(!viruses[i].taken) {
+				viruses[i] = generateVirus();
+			}
+		}
+
 		for(virus in viruses) {
 			if(viruses.hasOwnProperty(virus)) {
 				$('#album').append(makeButton(viruses[virus], virus, true));
