@@ -18,11 +18,12 @@ levelText[1] = "Dear ☃Stephanie☃,\n\
 my heard is like ☃burst☃ wiht some ☃SEMTEX☃.\n\
 I cannot keeep this ☃conspiracy☃ any longer.\n\
 I LOVE YOU.\n\
-Evertything in you, your ☃face☃, your hair,\n\
+Everything in you, your ☃face☃, your hair,\n\
 even your ☃sneakers☃ painted in flowers.\n\
 I can only hope, you feel the same.\n\
 If so, maybe i could take you for the newest\n\
 ☃Pixar movie☃\n\
+My phone number: ☃(+48) 456 354 158 ext 546324☃.\n\
 \n\
 Trully yours,\n\
 ☃Bob☃";
@@ -43,8 +44,6 @@ I hope we will meet again,\n\
 ☃Merlin☃";
 
 levelText[3] = "Litwo! ☃Ojczyzno moja!☃ ty jestes jak zdrowie.\n\
-1237\n\
-???\n\
 Kto cie stracil. Dzis ☃pieknosc☃ twa w calej ozdobie\n\
 Widze i opisuje, bo tesknie po tobie.\n\
 \n\
@@ -60,7 +59,6 @@ Tak nas powrocisz cudem na Ojczyzny lono.\n\
 Tymczasem przenos moje dusze uteskniona\n\
 Do tych pagorkow lesnych, do tych lak zielonych,\n\
 Szeroko nad blekitnym Niemnem rozciagnionych;\n\
-☃534534 52345 423542354235 2435 4235 4235 4524353245234 52435 4235 4235 54423532452345 52345 4235 452345☃\n\
 Do tych pol malowanych zbozem rozmaitem,\n\
 Wyzlacanych pszenica, posrebrzanych zytem;\n\
 Gdzie bursztynowy swierzop, gryka jak snieg biala,\n\
@@ -189,23 +187,38 @@ function generateVirus() {
 		typeString: ''
 	}
 
-	var r = Math.seededRandom();
-	if(r <= 0.2) {
-		virus.typeString += 'AEIOU';
-		virus.letter = 'vowel';
-	} else if(r <= 0.5) {
-		virus.typeString += 'BCDFG';
-		virus.letter = 'consonant';
-	}
 
-	if(r >= 0.5 && r <= 0.7) {
-		virus.nonLetter = true;
-		virus.typeString += '?.!-';
-	}
 
-	if(r >= 0.7) {
-		virus.numbers = true;
-		virus.typeString += '12345';
+	var rr = Math.seededRandom();
+	if (rr < 0.1) {
+		virus.lowerCase = true;
+		virus.typeString = '<em>lower</em>';
+	} else if (rr < 0.2) {
+		virus.upperCase = true;
+		virus.typeString = '<em>upper</em>';
+	} else if (rr < 0.27) {
+		virus.typeString = '<em>all</em>';
+	} else {
+
+		var r = Math.seededRandom();
+		if(r <= 0.2) {
+			virus.typeString += 'AEIOU';
+			virus.letter = 'vowel';
+		} else if(r <= 0.5) {
+			virus.typeString += 'BCDFG';
+			virus.letter = 'consonant';
+		}
+
+		if(r >= 0.5 && r <= 0.7) {
+			virus.nonLetter = true;
+			virus.typeString += '?.!-';
+		}
+
+		if(r >= 0.7) {
+			virus.numbers = true;
+			virus.typeString += '12345';
+		}
+
 	}
 
 	virus.cooldown = Math.round(Math.seededRandom() * 15 + 1);
@@ -383,13 +396,22 @@ function launchVirus(virus) {
 			return;
 		}
 
+		if (virus.lowerCase && !isLowerCase($el, text)) {
+			return;
+		}
+
+		if (virus.upperCase && !isUpperCase($el, text)) {
+			return;
+		}
+
 		if ((virus.letter && isLetter($el, text) && (
 				(virus.letter == 'vowel' && isVowel($el, text)) ||
 				(virus.letter == 'consonant' && !isVowel($el, text)) ||
 				(virus.letter == true))) ||
 			(virus.nonLetter && !isLetter($el, text)) ||
 			(virus.number && isNumber($el, text)) ||
-			(virus.notNumber && !isNumber($el, text))) {
+			(virus.notNumber && !isNumber($el, text)) ||
+			(!virus.letter && !virus.nonLetter && !virus.number && !virus.notNumber)) {
 
 			if (virus.removeBack) {
 				toRemoveFromBack.push({$el: $el, animation: virus.removeAnimation});
@@ -457,6 +479,14 @@ function isLetter($el, text) {
 function isVowel($el, text) {
 	var l = text.toUpperCase();
 	return l == 'E' || l == 'Y' || l == 'U' || l == 'O' || l == 'A' || l == 'I';
+}
+
+function isUpperCase($el, text) {
+	return text.toUpperCase() === text;
+}
+
+function isLowerCase($el, text) {
+	return text.toLowerCase() === text;
 }
 
 function makeButton(virus, id, giraffe) {
