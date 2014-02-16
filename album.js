@@ -27,6 +27,10 @@ AlbumState = {
 
 			var virus = viruses[$(this).data('virus-id')]
 
+			if (self.selectedVirus == virus) {
+				$(".takeuntake").trigger('click');
+			}
+
 			var virusParams = "<ul id=aul>";
 
 			var kills = "";

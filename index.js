@@ -44,95 +44,95 @@ Act ☃smart☃, fight this ☃threat☃ for\n\
 I hope we will meet again,\n\
 ☃Merlin☃";
 
-levelText[3] = "Litwo! ☃Ojczyzno moja!☃ ty jesteś jak zdrowie.\n\
+levelText[3] = "Litwo! ☃Ojczyzno moja!☃ ty jestes jak zdrowie.\n\
 1237\n\
 ???\n\
-Kto cię stracił. Dziś ☃piękność☃ twą w całej ozdobie\n\
-Widzę i opisuję, bo tęsknię po tobie.\n\
+Kto cie stracil. Dzis ☃pieknosc☃ twa w calej ozdobie\n\
+Widze i opisuje, bo tesknie po tobie.\n\
 \n\
-Panno Święta, co jasnej bronisz Częstochowy\n\
-I w Ostrej ☃świecisz☃ Bramie! Ty, co gród zamkowy\n\
-Nowogródzki ochraniasz z jego wiernym ludem!\n\
-Jak mnie dziecko do zdrowia powróciłaś ☃cudem☃\n\
-(Gdy od płaczącej matki pod Twoją opiekę\n\
-Ofiarowany, ☃martwą podniosłem powiekę☃\n\
-I zaraz mogłem pieszo do Twych świątyń progu\n\
-Iść za wrócone życie podziękować Bogu),\n\
-Tak nas powrócisz cudem na Ojczyzny łono.\n\
-Tymczasem przenoś moję duszę utęsknioną\n\
-Do tych pagórków leśnych, do tych łąk zielonych,\n\
-Szeroko nad błękitnym Niemnem rozciągnionych;\n\
+Panno Swieta, co jasnej bronisz Czestochowy\n\
+I w Ostrej ☃swiecisz☃ Bramie! Ty, co grod zamkowy\n\
+Nowogrodzki ochraniasz z jego wiernym ludem!\n\
+Jak mnie dziecko do zdrowia powrocilas ☃cudem☃\n\
+(Gdy od placzacej matki pod Twoja opieke\n\
+Ofiarowany, ☃martwa podnioslem powieke☃\n\
+I zaraz moglem pieszo do Twych swiatyn progu\n\
+Isc za wrocone zycie podziekowac Bogu),\n\
+Tak nas powrocisz cudem na Ojczyzny lono.\n\
+Tymczasem przenos moje dusze uteskniona\n\
+Do tych pagorkow lesnych, do tych lak zielonych,\n\
+Szeroko nad blekitnym Niemnem rozciagnionych;\n\
 ☃534534 52345 423542354235 2435 4235 4235 4524353245234 52435 4235 4235 54423532452345 52345 4235 452345☃\n\
-Do tych pól malowanych zbożem rozmaitem,\n\
-Wyzłacanych pszenicą, posrebrzanych żytem;\n\
-Gdzie bursztynowy świerzop, gryka jak śnieg biała,\n\
-Gdzie panieńskim rumieńcem dzięcielina pała,\n\
-A wszystko przepasane, jakby wstęgą, miedzą\n\
-Zieloną, na niej z rzadka ciche grusze siedzą.\n\
+Do tych pol malowanych zbozem rozmaitem,\n\
+Wyzlacanych pszenica, posrebrzanych zytem;\n\
+Gdzie bursztynowy swierzop, gryka jak snieg biala,\n\
+Gdzie panienskim rumiencem dziecielina pala,\n\
+A wszystko przepasane, jakby wstega, miedza\n\
+Zielona, na niej z rzadka ciche grusze siedza.\n\
 \n\
-Śród takich pól przed laty, nad brzegiem ruczaju,\n\
-Na pagórku niewielkim, we brzozowym gaju,\n\
-Stał dwór szlachecki, z drzewa, lecz podmurowany;\n\
-Świeciły się z daleka pobielane ściany,\n\
-Tym bielsze, że odbite od ciemnej zieleni\n\
-Topoli, co go bronią od wiatrów jesieni.\n\
-Dóm mieszkalny niewielki, lecz zewsząd chędogi,\n\
-I stodołę miał wielką, i przy niej trzy stogi\n\
-Użątku, co pod strzechą zmieścić się nie może;\n\
-Widać, że okolica obfita we zboże,\n\
-I widać z liczby kopic, co wzdłuż i wszerz smugów\n\
-Świecą gęsto jak gwiazdy, widać z liczby pługów\n\
-Orzących wcześnie łany ogromne ugoru,\n\
-Czarnoziemne, zapewne należne do dworu,\n\
-Uprawne dobrze na kształt ogrodowych grządek:\n\
-Że w tym domu dostatek mieszka i porządek.\n\
+Srod takich pol przed laty, nad brzegiem ruczaju,\n\
+Na pagorku niewielkim, we brzozowym gaju,\n\
+Stal dwor szlachecki, z drzewa, lecz podmurowany;\n\
+Swiecily sie z daleka pobielane sciany,\n\
+Tym bielsze, ze odbite od ciemnej zieleni\n\
+Topoli, co go bronia od wiatrow jesieni.\n\
+Dom mieszkalny niewielki, lecz zewszad chedogi,\n\
+I stodole mial wielka, i przy niej trzy stogi\n\
+Uzatku, co pod strzecha zmiescic sie nie moze;\n\
+Widac, ze okolica obfita we zboze,\n\
+I widac z liczby kopic, co wzdluz i wszerz smugow\n\
+Swieca gesto jak gwiazdy, widac z liczby plugow\n\
+Orzacych wczesnie lany ogromne ugoru,\n\
+Czarnoziemne, zapewne nalezne do dworu,\n\
+Uprawne dobrze na ksztalt ogrodowych grzadek:\n\
+Ze w tym domu dostatek mieszka i porzadek.\n\
 \n\
-Brama na wciąż otwarta przechodniom ogłasza,\n\
-Że gościnna i wszystkich w gościnę zaprasza.\n\
+Brama na wciaz otwarta przechodniom oglasza,\n\
+Ze goscinna i wszystkich w goscine zaprasza.\n\
 \n\
-Właśnie dwókonną bryką wjechał młody panek\n\
-I obiegłszy dziedziniec zawrócił przed ganek,\n\
-Wysiadł z powozu; konie porzucone same,\n\
-Szczypiąc trawę ciągnęły powoli pod bramę.\n\
-We dworze pusto, bo drzwi od ganku zamknięto\n\
-Zaszczepkami i kołkiem zaszczepki przetknięto.\n\
-Podróżny do folwarku nie biegł sług zapytać;\n\
-Odemknął, wbiegł do domu, pragnął go powitać.\n\
-Dawno domu nie widział, bo w dalekim mieście\n\
-Kończył nauki, końca doczekał nareszcie.\n\
-Wbiega i okiem chciwie ściany starodawne\n\
-Ogląda czule, jako swe znajome dawne.\n\
-Też same widzi sprzęty, też same obicia,\n\
-Z któremi się zabawiać lubił od powicia;\n\
-Lecz mniej wielkie, mniej piękne, niż się dawniej zdały.\n\
-I też same portrety na ścianach wisiały.\n\
-Tu Kościuszko w czamarce krakowskiej, z oczyma\n\
-Podniesionymi w niebo, miecz oburącz trzyma;\n\
-Takim był, gdy przysięgał na stopniach ołtarzów,\n\
-Że tym mieczem wypędzi z Polski trzech mocarzów\n\
+Wlasnie dwokonna bryka wjechal mlody panek\n\
+I obieglszy dziedziniec zawrocil przed ganek,\n\
+Wysiadl z powozu; konie porzucone same,\n\
+Szczypiac trawe ciagnely powoli pod brame.\n\
+We dworze pusto, bo drzwi od ganku zamknieto\n\
+Zaszczepkami i kolkiem zaszczepki przetknieto.\n\
+Podrozny do folwarku nie biegl slug zapytac;\n\
+Odemknal, wbiegl do domu, pragnal go powitac.\n\
+Dawno domu nie widzial, bo w dalekim miescie\n\
+Konczyl nauki, konca doczekal nareszcie.\n\
+Wbiega i okiem chciwie sciany starodawne\n\
+Oglada czule, jako swe znajome dawne.\n\
+Tez same widzi sprzety, tez same obicia,\n\
+Z ktoremi sie zabawiac lubil od powicia;\n\
+Lecz mniej wielkie, mniej piekne, niz sie dawniej zdaly.\n\
+I tez same portrety na scianach wisialy.\n\
+Tu Kosciuszko w czamarce krakowskiej, z oczyma\n\
+Podniesionymi w niebo, miecz oburacz trzyma;\n\
+Takim byl, gdy przysiegal na stopniach oltarzow,\n\
+Ze tym mieczem wypedzi z Polski trzech mocarzow\n\
 Albo sam na nim padnie. Dalej w polskiej szacie\n\
-Siedzi Rejtan żałośny po wolności stracie,\n\
-W ręku trzymna nóż, ostrzem zwrócony do łona,\n\
-A przed nim leży Fedon i żywot Katona.\n\
-Dalej Jasiński, młodzian piękny i posępny,\n\
-Obok Korsak, towarzysz jego nieodstępny,\n\
-Stoją na szańcach Pragi, na stosach Moskali,\n\
-Siekąc wrogów, a Praga już się wkoło pali.\n\
-Nawet stary stojący zegar kurantowy\n\
-W drewnianej szafie poznał u wniścia alkowy\n\
-I z dziecinną radością pociągnął za sznurek,\n\
-By stary Dąbrowskiego usłyszeć mazurek.\n\
+Siedzi Rejtan zalosny po wolnosci stracie,\n\
+W reku trzymna noz, ostrzem zwrocony do lona,\n\
+A przed nim lezy Fedon i zywot Katona.\n\
+Dalej Jasinski, mlodzian piekny i posepny,\n\
+Obok Korsak, towarzysz jego nieodstepny,\n\
+Stoja na szancach Pragi, na stosach Moskali,\n\
+Siekac wrogow, a Praga juz sie wkolo pali.\n\
+Nawet stary stojacy zegar kurantowy\n\
+W drewnianej szafie poznal u wniscia alkowy\n\
+I z dziecinna radoscia pociagnal za sznurek,\n\
+By stary Dabrowskiego uslyszec mazurek.\n\
 \n\
-Biegał po całym domu i szukał komnaty,\n\
-Gdzie mieszkał, dzieckiem będąc, przed dziesięciu laty.\n\
-Wchodzi, cofnął się, toczył zdumione źrenice\n\
-Po ścianach: w tej komnacie mieszkanie kobiĂŠce?\n\
-Któż by tu mieszkał? Stary stryj nie był żonaty,\n\
-A ciotka w Petersburgu mieszkała przed laty.\n\
-To nie był ochmistrzyni pokój! Fortepiano?\n\
-Na niem noty i książki; wszystko porzucano\n\
-Niedbale i bezładnie; nieporządek miły!\n\
-Niestare były rączki, co je tak rzuciły.";
+Biegal po calym domu i szukal komnaty,\n\
+Gdzie mieszkal, dzieckiem bedac, przed dziesieciu laty.\n\
+Wchodzi, cofnal sie, toczyl zdumione zrenice\n\
+Po scianach: w tej komnacie mieszkanie kobiĂŠce?\n\
+Ktoz by tu mieszkal? Stary stryj nie byl zonaty,\n\
+A ciotka w Petersburgu mieszkala przed laty.\n\
+To nie byl ochmistrzyni pokoj! Fortepiano?\n\
+Na niem noty i ksiazki; wszystko porzucano\n\
+Niedbale i bezladnie; nieporzadek mily!\n\
+Niestare byly raczki, co je tak rzucily.";
 
 var isInSnowmanState = false;
 
@@ -187,7 +187,7 @@ for(var i = 0; i < 9; i++) {
 		viruses[i].typeString += '12345';
 	}
 
-	viruses[i].cooldown = Math.round(Math.random() * 16 + 4);
+	viruses[i].cooldown = Math.round(Math.random() * 15 + 1);
 
 	if(Math.random() < 0.3) {
 		viruses[i].removeFront = Math.round(Math.random() * 10 + 5);
@@ -195,9 +195,14 @@ for(var i = 0; i < 9; i++) {
 	if(Math.random() < 0.3) {
 		viruses[i].removeBack = Math.round(Math.random() * 10 + 5);
 	}
-	if(Math.random() < 0.5) {
+
+	if (viruses[i].removeFront || viruses[i].removeBack) {
+		viruses[i].probability = Math.round(Math.random() * 50 + 50);
+	} else {
 		viruses[i].probability = Math.round(Math.random() * 90 + 10);
 	}
+	
+	
 }
 
 
