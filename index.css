@@ -169,7 +169,7 @@ table {
 	font-size: 13px;
 }
 
-.button * {
+.button:after {
 	pointer-events: none;
 }
 
