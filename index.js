@@ -275,7 +275,7 @@ function generateVirus() {
 // viruses.d = {
 // 	name: generateVirusName(),
 // 	typeString: '0-9',
-// 	number: true,
+// 	numbers: true,
 // 	probability: 50,
 // 	removeAnimation: 'rollOut',
 // 	cooldown: 0.1
@@ -411,9 +411,9 @@ function launchVirus(virus) {
 				(virus.letter == 'consonant' && !isVowel($el, text)) ||
 				(virus.letter == true))) ||
 			(virus.nonLetter && !isLetter($el, text)) ||
-			(virus.number && isNumber($el, text)) ||
+			(virus.numbers && isNumber($el, text)) ||
 			(virus.notNumber && !isNumber($el, text)) ||
-			(!virus.letter && !virus.nonLetter && !virus.number && !virus.notNumber)) {
+			(!virus.letter && !virus.nonLetter && !virus.numbers && !virus.notNumber)) {
 
 			if (virus.removeBack) {
 				toRemoveFromBack.push({$el: $el, animation: virus.removeAnimation});
