@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 app.use("/", express.static(__dirname));
 
 io.sockets.on('connection', function (socket) {
-  var code = 'dupa1';
+  var code = '1' + Math.floor(Math.random() * 10000);
 
   socket.on('server-hello', function() {
     codes[code] = {};

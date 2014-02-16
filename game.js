@@ -1,11 +1,13 @@
 GameState = {
 
-	enter: function(viruses, level, multiplayer) {
+	enter: function(viruses, level, multiplayer, code) {
 
 		this.viruses = viruses;
 		this.multiplayer = multiplayer;
 
 		var self = this;
+
+		$('body').append('<div class="cables" style="top: -200px"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="buttons"></div><div id="text"><div id="counters"><div id="life"></div><div id="time"></div></div><div id="screen1"></div></div><div class="newline"></div><div class="wcklogo" style="display: inline; margin-left: 30px">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo giraffe" style="font-size: 28px; padding: 10px 0; display: inline;  margin-left: 130px">the&nbsp;text&nbsp;defence&nbsp;game</div></div>');
 
 		if(multiplayer == 'server') {
 			this.socket = io.connect('http://localhost');
@@ -13,6 +15,7 @@ GameState = {
 			this.socket.on('hello', function (data) {
 				console.log(data.code);
 				self.code = data.code;
+				$('.giraffe').text('Code: ' + data.code);
 			});
 
 			this.socket.on('client-connected', function (data) {
@@ -27,8 +30,9 @@ GameState = {
 		} else if(multiplayer == 'client') {
 			// this.socket = io.connect('http://localhost');
 			this.socket = io.connect('http://172.17.64.229');
-			self.code = 'dupa1';
-			this.socket.emit('client-hello', { code: 'dupa1' });
+			self.code = code;
+			console.log(code);
+			this.socket.emit('client-hello', { code: self.code });
 			this.socket.on('hello', function (data) {
 
 			});
@@ -40,7 +44,6 @@ GameState = {
 
 		this.level = level;
 
-		$('body').append('<div class="cables" style="top: -200px"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="buttons"></div><div id="text"><div id="counters"><div id="life"></div><div id="time"></div></div><div id="screen1"></div></div><div class="newline"></div><div class="wcklogo" style="display: inline; margin-left: 30px">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0; display: inline;  margin-left: 130px">the&nbsp;text&nbsp;defence&nbsp;game</div></div>');
 
 
 		for(virus in self.viruses) {

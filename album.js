@@ -1,8 +1,9 @@
 AlbumState = {
-	enter: function(multiplayer) {
+	enter: function(multiplayer, code) {
 		$('body').append('<div class="cables"><div class="cable"></div><div class="cable2"></div><div class="cable cable3"></div><div class="cable2 cable4"></div><div class="cable cable5"></div><div class="cable2 cable6"></div></div><div id="awrapper"><div id="album"></div><div id="details"><div class="wcklogo">Words&nbsp;&nbsp;can&nbsp;&nbsp;kill</div><div class="wcklogo" style="font-size: 28px; padding: 10px 0;">virus&nbsp;&nbsp;library</div><div id="atext"><div id="ascreen"></div></div><br><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><br><a class="button glass shield xl start">start</a></div></div>');
 
 		this.multiplayer = multiplayer;
+		this.code = code;
 
 		var self = this;
 
@@ -151,7 +152,7 @@ AlbumState = {
 
 			// var multi = client ? 'client' : (server ? 'server' : (local ? 'local' : false));
 
-			setState(GameState, takenViruses, GameState.level !== undefined ? GameState.level + 1 : 0, self.multiplayer);
+			setState(GameState, takenViruses, GameState.level !== undefined ? GameState.level + 1 : 0, self.multiplayer, self.code);
 		});
 	},
 
