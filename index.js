@@ -1,3 +1,4 @@
+var isMulti = document.URL.indexOf('multi') != -1;
 
 var levelText = [];
 

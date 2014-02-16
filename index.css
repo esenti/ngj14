@@ -160,3 +160,13 @@ table {
 	color: black !important;
 	padding: 3px !important;
 }
+
+#life {
+	position: absolute;
+	right: 152px;
+	top: 187px;
+	padding: 5px;
+	background: green;
+	color: black;
+	z-index: 1000;
+}
