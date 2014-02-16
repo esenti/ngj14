@@ -19,18 +19,25 @@ GameState = {
 			}
 		}
 
-		$('.button').click(function() {
+		$('.button').click(function(e) {
 
 			var virus = self.viruses[$(this).data('virus-id')]
 
 			console.log(virus)
 
 			if (virus.cooldownLeft > 0) {
+				virus.cooldownLeft = virus.cooldown;
 				return;
 			}
 
+			virus.cooldown += 1;
 			virus.cooldownLeft = virus.cooldown;
+
+			var strCooldown = virus.cooldown > 9999 ? '&infin;' : virus.cooldown + 's';
+			$(e.target).find('.cooldownStr').text(strCooldown);
+
 			$(this).addClass('cooling-down');
+
 
 			launchVirus(virus);
 		})

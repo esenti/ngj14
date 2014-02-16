@@ -447,7 +447,7 @@ function makeButton(virus, id, giraffe) {
 		'</td><td class="bttopright">' + strProbability + '</td></tr>' +
 		'<tr><td colspan=2 class="btmid">' + strName + '</td></tr>' +
 		'<tr><td class="bttopleft">' + strDirection + '</td>' +
-		'<td class="btbottomright">' + strCooldown + '</td></tr></table></div></a>';
+		'<td class="btbottomright cooldownStr">' + strCooldown + '</td></tr></table></div></a>';
 
 	return newButton;
 }
