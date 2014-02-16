@@ -1,6 +1,6 @@
 AlbumState = {
 	enter: function() {
-		$('body').append('<div id="album"></div><div id="details"><div id="atext"><div id="ascreen"></div></div><a class="button glass back xl ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button glass shield xl start">start</a></div>');
+		$('body').append('<div id="album"></div><div id="details"><div id="atext"><div id="ascreen"></div></div><a class="button glass back xl takeuntake ' + (virus.taken ? 'untake' : 'take') + '">' + (virus.taken ? 'untake' : 'take') + '</a><a class="button glass shield xl start">start</a></div>');
 
 		var self = this;
 
@@ -18,7 +18,7 @@ AlbumState = {
 		}
 
 
-		$('.button').click(function() {
+		$('#album .button').click(function() {
 
 			var virus = viruses[$(this).data('virus-id')]
 
@@ -73,6 +73,18 @@ AlbumState = {
 
 			self.selectedVirus = virus;
 			self.selectedVirusId = $(this).data('virus-id');
+
+			if(virus.taken) {
+				$('.takeuntake').text('untake');
+				$('.takeuntake').addClass('untake');
+				$('.takeuntake').removeClass('take');
+			} else {
+				$('.takeuntake').text('take');
+				$('.takeuntake').addClass('take');
+				$('.takeuntake').removeClass('untake');
+			}
+
+			$('.takeuntake').addClass('orange');
 		});
 
 		$('#details').on('click', '.take', function() {
@@ -82,7 +94,12 @@ AlbumState = {
 				$('a[data-virus-id=' + self.selectedVirusId + ']').removeClass('blue');
 				$(this).removeClass('take');
 				$(this).addClass('untake');
+				$('.takeuntake').text('untake');
 				self.taken += 1;
+
+				if(!((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount))) {
+					$('.start').addClass('orange');
+				}
 			}
 		});
 
@@ -92,14 +109,16 @@ AlbumState = {
 			$('a[data-virus-id=' + self.selectedVirusId + ']').removeClass('green');
 			$(this).removeClass('untake');
 			$(this).addClass('take');
+			$('.takeuntake').text('take');
 			self.taken -= 1;
+			$('.start').removeClass('orange');
 		});
 
 		$('#details').on('click', '.start', function() {
 
-			// if((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount)) {
-			// 	return;
-			// }
+			if((self.taken < 5 && self.virusesCount >= 5) || (self.virusesCount < 5 && self.taken !== self.virusesCount)) {
+				return;
+			}
 
 			var takenViruses = [];
 
