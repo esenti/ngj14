@@ -5,16 +5,29 @@ GameState = {
 		this.viruses = viruses;
 		this.multiplayer = multiplayer;
 
+		var self = this;
+
 		if(multiplayer == 'server') {
 			this.socket = io.connect('http://localhost');
 			this.socket.emit('server-hello');
 			this.socket.on('hello', function (data) {
 				console.log(data.code);
+				self.code = data.code;
 			});
+
+			this.socket.on('client-connected', function (data) {
+				console.log('Client connected!');
+			});
+
+			this.socket.on('virus', function(data) {
+				launchVirus(data.virus);
+			})
 
 			this.viruses = [];
 		} else if(multiplayer == 'client') {
-			this.socket = io.connect('http://localhost');
+			// this.socket = io.connect('http://localhost');
+			this.socket = io.connect('http://172.17.64.229');
+			self.code = 'dupa1';
 			this.socket.emit('client-hello', { code: 'dupa1' });
 			this.socket.on('hello', function (data) {
 
@@ -26,8 +39,6 @@ GameState = {
 		this.level = level;
 
 		$('body').append('<div id="buttons"></div><div id="life"></div><div id="text"><div id="screen1"></div></div><div class="newline"></div>');
-
-		var self = this;
 
 
 		for(virus in self.viruses) {
@@ -52,6 +63,10 @@ GameState = {
 			$(this).addClass('cooling-down');
 
 			launchVirus(virus);
+
+			if(self.multiplayer == 'client') {
+				self.socket.emit('virus', {code: self.code, virus: virus});
+			}
 		})
 
 
@@ -66,7 +81,7 @@ GameState = {
 				if (e.charCode >= 32 && e.charCode <= 122) {
 					var nextLetter = String.fromCharCode(e.charCode);
 					if(self.socket) {
-						self.socket.emit('key', {key: nextLetter});
+						self.socket.emit('key', {code: self.code, key: nextLetter});
 					}
 					newline.html(newline.html() + '<span class="letter '+ ((nextLetter != ' ') ? 'alive' : '') + ' ' + (isInSnowmanState ? 'hot' : '') + '">' + nextLetter + '</span>');
 				}
@@ -89,7 +104,7 @@ GameState = {
 
 					if(canAppend) {
 						if(self.socket) {
-							self.socket.emit('action', {action: 'append'});
+							self.socket.emit('append', {code: self.code});
 						}
 						$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
 						newline.html('');
@@ -98,6 +113,45 @@ GameState = {
 					}
 				}
 			});
+		}
+
+		if(multiplayer == 'client') {
+			self.socket.on('key', function(data) {
+				var newline = $('.newline');
+				var nextLetter = data.key;
+
+				newline.html(newline.html() + '<span class="letter '+ ((nextLetter != ' ') ? 'alive' : '') + ' ' + (isInSnowmanState ? 'hot' : '') + '">' + nextLetter + '</span>');
+
+			});
+
+			self.socket.on('append', function(data) {
+				var newline = $('.newline');
+				$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
+				newline.html('');
+				$('.line').last().animate({top: 0}, gameTime, 'linear');
+			});
+				// if((newline.children().length > 5 && nextLetter == '\n') || waitingForSpace || nextLetter == undefined) {
+				// 	var canAppend = true;
+
+				// 	$('.line').each(function() {
+
+				// 		if($(this).position().top >= ($('#text').height() - 2 * $(this).height())) {
+				// 			canAppend = false;
+				// 			waitingForSpace = true;
+				// 		}
+				// 	});
+
+				// 	if(canAppend) {
+				// 		if(self.socket) {
+				// 			self.socket.emit('action', {action: 'append'});
+				// 		}
+				// 		$('#text').append('<div class="line" style="top: ' + ($('#text').height() - 20) + 'px">' + newline.html() + '<div>');
+				// 		newline.html('');
+				// 		$('.line').last().animate({top: 0}, gameTime, 'linear');
+				// 		waitingForSpace = false;
+				// 	}
+				// }
+			// });
 		}
 
 	},
