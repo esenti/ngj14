@@ -80,7 +80,15 @@ GameState = {
 			$(this).addClass('cooling-down');
 
 			if(self.multiplayer == 'client') {
-				self.socket.emit('virus', {code: self.code, virus: virus});
+				var ser = {}
+
+				for(p in virus) {
+					if(virus.hasOwnProperty(p) && p != 'sound') {
+						ser[p] = virus[p];
+					}
+				}
+
+				self.socket.emit('virus', {code: self.code, virus: ser});
 			}
 		})
 

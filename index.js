@@ -187,7 +187,7 @@ function generateVirus() {
 		name: name,
 		removeAnimation: ['flipOutY', 'fadeOutDown', 'fadeOutDownBig', 'bounceOut', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'hinge', 'rollOut'][Math.floor(Math.seededRandom() * 9)],
 		typeString: '',
-		sound: new Audio(name.substring(0, 4).toLowerCase() + '.mp3')
+		sound: new Audio(name.substring(0, 3).toLowerCase() + '.mp3')
 	}
 
 	var rr = Math.seededRandom();
@@ -384,7 +384,13 @@ function getLetterIterator(level) {
 
 function launchVirus(virus) {
 
-	virus.sound.play();
+	if(virus.hasOwnProperty(sound)) {
+		virus.sound.play();
+	} else {
+		var sound = new Audio(virus.name.substring(0, 3).toLowerCase() + '.mp3');
+		sound.play();
+	}
+
 
 	var removedCounter = 0;
 
